@@ -30,7 +30,10 @@ footer{
 /*Sesion iniciada*/
 
 #Menu_Centro{
-  padding-left: 240px;
+  padding-left: 200px;
+}
+nav div div ul li{
+  padding:0px 10px 0px 10px;
 }
 
 .glyphicon-picture, #user, .glyphicon-search{
@@ -38,12 +41,11 @@ footer{
 }
 
 /*Inicio.html*/
-#miCalificacion{
-  padding-left: 190px; 
-  padding-right: 190px;
+.miCalificacion{
+  text-align:center;padding-top:10px;
 }
-#miCalificacion select{
-  padding-bottom: 0px;
+p{
+  text-align:justify;
 }
 
 .promedioCalificacion p{
