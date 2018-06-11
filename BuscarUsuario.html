@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="index.html" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item">
+              <a class="nav-link" href="inicio.html">Inicio
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="miPerfil.html">Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Notificaciones.html">Notificaciones</a>
+            </li>
+            <li class="nav-item" alt="Cargar Foto">
+              <a class="nav-link" href="cargarFoto.html">Cargar <span class="glyphicon glyphicon-picture"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html ">Log Out</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive">
+          <ul class="navbar-nav ml-auto" id="Menu_Derecha">
+            <li class="nav-item"><span class="glyphicon glyphicon-user" id="user"></span>Mi Usuario</li>
+          </ul>
+        </div>
+      </div>   
+    </nav>
+   
+    <!-- Page Content -->
+    <div class="container">
+     
+      <!-- Buscador -->
+      <div class="row justify-content-center">
+        <div class="col-md-12" >
+          <div class="col-md-6 col-md-offset-3">
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Buscar Usuario" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>  
+<!-- Resultados de la Busqueda -->        
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-2 col-xs-2">
+			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-4">
+			<div class="centrado-vertical nombre-usuario"><a href="otroPerfil.html"> USUARIO X</a></div>
+		</div>
+		<div class="col-xs-2">
+			<div  class="centrado-vertical">
+				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-offset-2 col-xs-2">
+			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-4">
+			<div class="centrado-vertical nombre-usuario">USUARIO XY</div>
+		</div>
+		<div class="col-xs-2">
+			<div  class="centrado-vertical">
+				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-offset-2 col-xs-2">
+			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-4">
+			<div class="centrado-vertical nombre-usuario">USUARIO XYZ</div>
+		</div>
+		<div class="col-xs-2">
+			<div  class="centrado-vertical">
+				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-offset-2 col-xs-2">
+			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-4">
+			<div class="centrado-vertical nombre-usuario">USUARIO XY_</div>
+		</div>
+		<div class="col-xs-2">
+			<div  class="centrado-vertical">
+				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- FIN Resultados de la Busqueda -->
+
+      <!-- Pagination -->
+
+      <div class="row justify-content-center">
+        <div class="col-md-12" >
+          <div class="col-md-3 col-md-offset-5">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>      
+
+    </div>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

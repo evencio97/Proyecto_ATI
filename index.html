@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white" href="index.html" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto" id="Menu_Derecha">
+            <li class="nav-item active">
+              <select>
+                <option>Español</option>
+                <option>Ingles</option>
+                <option>Frances</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <h2 class="my-3">Tendencias</h2>
+            <!-- Publicacion1 -->
+              
+                <div class="card mb-4">
+                  <img class="card-img-top" src="imagenes/750x300.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h2 class="card-title">UsuarioA</h2>
+                      <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                    </div>
+                  <div class="card-footer text-muted">
+                    2 Junio, 2018
+                  </div>
+                </div>
+               
+
+              <!-- Publicacion2 -->
+              
+                <div class="card mb-4">
+                  <img class="card-img-top" src="imagenes/750x300.png" alt="Card image cap">
+                  <div class="card-body">
+                    <h2 class="card-title">UsuarioB</h2>
+                    <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    2 Junio, 2018
+                  </div>
+                </div>  
+              
+
+              <!-- Publicacion3 -->
+                
+                <div class="card mb-4">
+                  <img class="card-img-top" src="imagenes/750x300.png" alt="Card image cap">
+                  <div class="card-body">
+                    <h2 class="card-title">UsuarioC</h2>
+                    <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                  </div>
+                  <div class="card-footer text-muted">
+                    2 Junio, 2018
+                  </div>
+                </div>
+              
+      </div><!-- Col-md-8 -->
+
+        <!-- Widgets Column -->
+        <div class="col-md-4" style="padding-top: 25px">
+          <!-- Widget Iniciar Sesion -->
+          <div class="card my-4">
+            <a class="card-header">Inicia Sesión</a>
+            <div class="card-body">
+              <form accept-charset="UTF-8" role="form" id="login-form" method="post">
+              <fieldset>
+                <div class="form-group input-group">
+                  <span class="input-group-addon">@</span>
+                  <input class="form-control" placeholder="Email" name="email" type="email" required="" autofocus="">
+                </div>
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
+                </div>
+                <div class="form-group">
+                   <!-- <button type="submit" class="btn btn-primary btn-block">Entrar</button> -->
+                  <a href="inicio.html" target="_self"><input class="btn btn-primary btn-block" type="button" name="boton" value="Entrar"/>  
+                  <p class="help-block"><a class="pull-right text-muted" href="recuperarContraseña.html"><small>¿Olvidaste tu contraseña?</small></a></p>
+                </div>
+              </fieldset>
+              </form>
+            </div>
+          </div>
+
+          <div class="card my-4">
+            <div class="card-body">
+              <div class="form-group">
+                <a href="registro.html"><input class="btn btn-primary btn-block"  value="Registro"/></a><br> 
+                <button type="submit" class="btn btn-primary btn-block">Entrar con FB</button>
+                <button type="submit" class="btn btn-primary btn-block">Entrar con Twitter</button>
+              </div>  
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Acerca</h5>
+            <div class="card-body">
+                Universidad Central de Venezuela<br>
+                Facultad de Ciencias<br>
+                Escuela de Computación <br>
+                ATI 2-2017<br>
+                GRUPO 5
+            </div>
+          </div>
+        </div> <!-- Widgets Columns -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
