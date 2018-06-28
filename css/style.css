@@ -1,0 +1,185 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+/*TODOS*/
+
+#cuerpo{
+  padding: 0;
+}
+  
+#ATIstagram{
+  font-size: 20px;
+}
+
+#Menu{
+  border-radius: 0px; 
+  background-color: #3267AD;
+}
+
+#Menu_Derecha{
+  float: right;
+}
+
+#fotopequeñaUsuario {
+    width: 30px;
+    height: 30px;
+}
+
+footer{
+  border-radius: 0px; 
+  background-color: #3267AD;
+}
+
+/*Index*/
+
+.btn-social{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.btn-facebook{background-color:#3b5998;}
+.btn-facebook:hover{color:#fff;background-color:#30487b;border-color:rgba(0,0,0,0.2)}
+
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+
+/*Sesion iniciada*/
+
+#Menu_Centro{
+  padding-left: 280px;
+}
+nav div div ul li{
+  padding:0px 10px 0px 10px;
+}
+
+.glyphicon-picture, #user, .glyphicon-search{
+  color: white;
+}
+
+/*Inicio.html*/
+.miCalificacion{
+  text-align:center;padding-top:10px;
+}
+p{
+  text-align:justify;
+}
+
+.promedioCalificacion {
+  padding-top: 28px;
+}
+
+#btComentar{
+  border-color: blue;
+  border-style: 5px solid;
+}
+
+#botonSubir{
+  padding-top: 10px;
+  padding-left: 58px;
+}
+
+.btn-label {position: relative;left: -5px;display: inline-block;padding: 2px 6px;}
+
+
+
+/* miPerfil.html*/
+
+#buscador{
+  padding-left: 50px; 
+  padding-right: 50px;
+}
+
+#buscadorTam{
+  padding-right: 8px; 
+  padding-left: 8px;
+}
+
+#calificarme{
+  padding-left: 135px;
+  padding-right: 135px;
+  padding-bottom:20px;
+}
+
+#calificarme select{
+  padding-bottom: 0px;
+}
+
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.fb-image-profile{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 200px; 
+}
+
+/* Nombre Publicacion + Mi perfil  */
+#nombre_publicacion{
+	list-style: none; 
+	font-size: 25px; 
+	font-style: bold;
+}
+#imaginary_container{
+    margin-top: 2%;
+    margin-bottom: 5%; /* Don't copy this */
+}
+.stylish-input-group .input-group-addon{
+    background: #3267AD !important; 
+}
+
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.foto-buscador {
+    width: 100%;
+    height: 100%;
+}
+
+div .centrado-vertical{
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.nombre-usuario{
+    font-size: 1.5em;
+    text-align: left;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+
+}
+
+@media (max-width:768px){
+    
+	.fb-profile-text>h1{
+   		font-weight: 700;
+    	font-size:16px;
+	}
+
+	.fb-image-profile{
+    	margin: -45px 10px 0px 25px;
+    	z-index: 9;
+    	width: 20%; 
+	}
+	}
+}
