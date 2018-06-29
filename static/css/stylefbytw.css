@@ -1,0 +1,89 @@
+body{
+	background-image: url("../img/wall.jpg");
+	background-attachment: fixed;
+	background-size: 100%;
+}
+
+html body{
+	height: 100%;
+}
+
+table, td, th{
+	border:2px solid #3B5998;
+	border-radius: 3px;
+}
+
+.table_head{
+	background-color: #3B5998;
+	color:white;
+}
+
+#wrapper{
+	width: 700px ;
+	margin-left: auto ;
+	margin-right: auto ;
+	background-color:white;
+	border-radius: 2px;
+	-webkit-box-shadow: 0px 3px 6px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 3px 6px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 3px 6px rgba(50, 50, 50, 0.75);
+	min-height: 80%;
+}
+
+.my_info{
+	overflow: auto;
+}
+
+#wrapper_session{
+	overflow:auto;
+}
+
+#titulos{
+	text-align: center;
+	font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+	font-weight: normal;
+    font-size: 1.75em;
+	letter-spacing: .2em;
+	line-height: 1.1em;
+	margin:0px;
+	text-align: center;
+	text-transform: uppercase;
+	color:#3B5998;
+}
+
+#logout_button{
+	
+}
+
+.tw{
+	background-color: white;
+	height: auto;
+	width: 700px;
+}
+
+.iconos{
+	margin-left: 7%;
+}
+
+div#frm *{
+	display:inline;
+	margin-left: 8%;
+}
+
+.inset{
+	font-family: "Raleway" !important;
+}
+.twcont{
+	margin-left: 9% !important;
+}
+
+#desc{
+	width: 350px;
+	height: 100px;
+	font-size: 18px;
+}
+
+.iniUser{
+	font-size: 22px;
+	font-family: verdana;
+}

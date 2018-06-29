@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Ejemplo API Twitter</title>
+    <style type="text/css">
+      div { padding: 10px; }
+
+      form{
+        display: inline-block;
+      }
+      textarea{
+        width: 80%;
+        height: 80px;
+        font-size: 18px;
+      }
+      .msj{
+        color: green;
+        font-size: 18px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="static/css/stylefbytw.css"">
+    <link rel="stylesheet" type="text/css" href="static/css/buttons.css">
+    <meta charset="UTF-8">
+  </head>
+<body>
+  <div id="wrapper">
+    <form action="twitter_login" method="POST">
+        <input id="login_button" class="uibutton large confirm" type="submit" value="LogIn">
+    </form>
+    <form action="twitter_logOut" method="POST">
+        <input id="loginOut_button" class="uibutton large confirm" type="submit" value="LogOut">
+    </form>
+    <div id="titulos">
+      {%if name:%}
+        <h1 class='iniUser'>Bienvenido {{name}}</h1><br>
+      {%else:%}
+        <h1 class='iniUser'>Por favor inicie sesion</h1><br>
+      {%endif%}
+      <p class='inset'>Ultimos Tweets</p>
+    </div>
+    <form action="created_tweets" method="POST">
+        <textarea name="texto"></textarea><br>
+        <input id="createdTweet_button" class="uibutton large confirm" type="submit" value="Crear Tweet">
+    </form>
+    <div>
+      {%if creado:%}
+        <p class="msj">Tweet creado con exito</p>
+      {%endif%}
+    </div>
+    <br>
+    <form action="load_tweets" method="POST">
+        <input id="loadTweets_button" class="uibutton large confirm" type="submit" value="Cargar Tweets">
+    </form>
+    <div clas="twcont">
+        {% for t in tweets: %}
+          <div class="tweet">{{t.text}}</div>
+          <hr style="width: 100%; color: rgba(30,30,30,0.7);">
+        {% endfor %}
+  	</div>
+  </div>
+</body>
+</html>
