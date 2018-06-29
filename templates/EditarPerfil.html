@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram - Editar Perfil</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="index.html" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item">
+              <a class="nav-link" href="inicio.html">Inicio
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="miPerfil.html">Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Notificaciones.html">Notificaciones</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive" style="list-style: none;">
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">Mi Usuario</a>
+            <ul class="dropdown-menu" >
+              <li><a href="EditarPerfil.html">Editar Perfil</a></li>
+              <li><a  href="index.html">Cerrar Sesión</a></li>
+          </ul>
+          </li>
+        </div>
+      </div>   
+    </nav>
+
+  
+    <!-- Page Content -->
+<div class="container-fluid">
+
+<H1 style="text-align: center">EDITAR PERFIL</H1>
+<hr>
+
+<!-- Editar Fotos de Perfil -->
+<div class="col-xs-12 col-md-4">
+<H3 style="text-align: center">Fotos de Perfil</H3>
+<hr>
+  <div class="col-xs-12">
+    <img class="img-fluid" src="http://placehold.it/900x200" alt="">
+    <br><br>
+    <div align="center">
+      <button type="button" class="btn btn-primary btn-md active">Seleccionar Foto</button>
+    </div>
+    <br><br>
+  </div>
+  <div class="col-xs-12">
+    <div align="center"><img class="img-fluid" src="http://placehold.it/200x200" alt=""></div>
+    <br>
+    <div align="center">
+      <button type="button" class="btn btn-primary btn-md active">Seleccionar Foto</button>
+    </div>
+    <br>
+  </div>
+</div>
+<!-- FIN Editar Fotos de Perfil -->
+
+<!-- Formulario Datos Personales -->
+<div class="col-md-offset-1  col-md-6">
+<H3 style="text-align: center">Datos Personales</H3>
+<hr>
+  <div class="card">
+    <article class="card-body">
+      <form>
+        <div class="form-row">
+          <div class="col form-group">
+          <label>Nombre</label>   
+          <input type="text" class="form-control" placeholder="">
+          </div> <!-- form-group end.// -->
+          <div class="col form-group">
+          <label>Apellido</label>
+          <input type="text" class="form-control" placeholder=" ">
+          </div> <!-- form-group end.// -->
+        </div> <!-- form-row end.// -->
+        <div class="form-group">
+          <label>Correo Electronico</label>
+          <input type="email" class="form-control" placeholder="">
+        </div> <!-- form-group end.// -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Telefono</label>
+            <input type="text" class="form-control">
+          </div> <!-- form-group end.// -->
+          <div class="form-group col-md-6">
+            <label>Sexo</label>
+            <select id="inputState" class="form-control" style="padding-bottom: 25px">
+              <option>Femenino</option>
+              <option>Masculino</option>
+            </select>
+          </div> <!-- form-group end.// -->
+        </div> <!-- form-group end.// -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Ciudad</label>
+            <input type="text" class="form-control">
+          </div> <!-- form-group end.// -->
+          <div class="form-group col-md-6">
+            <label>Pais</label>
+            <select id="inputState" class="form-control" style="padding-bottom: 25px">
+              <option>Argentina</option>
+              <option>Estados Unidos</option>
+              <option>España</option>
+              <option>Venezuela</option>
+              <option>Vietnam</option>
+            </select>
+          </div> <!-- form-group end.// -->
+        </div> <!-- form-row.// -->
+        <div class="form-group">
+          <label>Fecha de Nacimiento:</label>
+          <input type="date" name="cumpleaños" step="1" min="1930-01-01" max="2018-05-31" value="2000-10-15">
+        </div>
+        <div class="form-group">
+          <label>Contraseña Actual</label>
+          <input class="form-control" type="password">
+          <label>Contraseña Nueva</label>
+          <input class="form-control" type="password">
+        </div> <!-- form-group end.// -->  
+      </form>
+    </article> <!-- card-body end .// -->
+  </div> <!-- card.// -->
+</div>
+<!-- Fin Formulario Datos Personales -->
+
+<div class="col-xs-12" align="center">
+  <br>
+  <button type="button" class="btn btn-success btn-lg">Guardar Cambios</button>
+  <button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+</div>
+
+
+</div>
+<br><br><br>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5"  style="border-radius: 0px; background-color: #3267AD">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      
+
+
+
+
+
+
+
+
+      </div>
+      <!-- /.container -->
+
+
+
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

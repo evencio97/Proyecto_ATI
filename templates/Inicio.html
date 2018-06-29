@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="inicio.html" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item active">
+              <a class="nav-link" href="inicio.html">Inicio
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="miPerfil.html">Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Notificaciones.html">Notificaciones</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive" style="list-style: none;">
+        <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">Mi Usuario</a>
+          <ul class="dropdown-menu" >
+            <li><a href="EditarPerfil.html">Editar Perfil</a></li>
+            <li><a  href="index.html">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+        </div>
+      </div>   
+    </nav>
+
+   
+    <!-- Page Content -->
+    <div class="container">
+     
+      <!-- Buscador -->
+      <div class="row justify-content-center">
+        <div class="col-md-12" >
+          <div class="col-md-6 col-md-offset-3">
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Buscar Usuario" >
+                    <span class="input-group-addon">
+                        <!--<button type="submit"> -->
+                            <a href="BuscarUsuario.html" target="_self">
+                              <span class="glyphicon glyphicon-search"></span>
+                            </a>
+                        <!--</button>  -->
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-2" id="botonSubir">
+          	 <a href="cargarFoto.html"><button type="button" class="btn btn-labeled btn-success">
+                <span class="btn-label"><i class="glyphicon glyphicon-picture"></i></span>Publicar</button></a>
+          </div>
+        </div>   
+      </div>
+      
+         
+        <!--Publicacion 1-->
+      <div class="row justify-content-center">  
+        <div class="col-md-5">
+          <li id="nombre_publicacion"><span class="glyphicon glyphicon-user"></span>UsuarioM</li>
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="imagenes/500x300.png" alt="">
+          </a>  
+            <div class="miCalificacion">
+              Tu puntuación:
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label>★</label>
+              <label>★</label><br>
+            </div>
+        </div>
+        <div class="col-md-l" style="padding-right: 40px">
+          <form>
+            <p class="promedioCalificacion">
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+            </p>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h4>Comentarios</h4>
+          <p><b>UsuarioA: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioB: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioC: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+
+          <div class="col-md-10">
+            <input type="text" class="form-control"  placeholder="Agrega un comentario..." >
+          </div>
+          <div class="col-md-2" style="padding-left: 2px">
+            <button type="button" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+          </div>
+              
+        </div>
+      </div> 
+      <!-- /.row Publicacion 1 -->
+
+      <hr>
+
+        <!--Publicacion 2-->
+      <div class="row justify-content-center">  
+        <div class="col-md-5">
+          <li id="nombre_publicacion"><span class="glyphicon glyphicon-user"></span>UsuarioN</li>
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="imagenes/500x300.png" alt="">
+          </a>
+            <div class="miCalificacion">
+              Tu puntuación:
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label>★</label>
+              <label>★</label><br>
+            </div> <!-- form-group end.// -->
+        </div>
+        <div class="col-md-l" style="padding-right: 40px">
+          <form>
+            <p class="promedioCalificacion">
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+            </p>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h4>Comentarios</h4>
+          <p><b>UsuarioAB: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioB: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioH: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+
+          <div class="col-md-10">
+            <input type="text" class="form-control"  placeholder="Agrega un comentario..." >
+          </div>
+          <div class="col-md-2" style="padding-left: 2px">
+            <button type="button" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+          </div>
+        </div>
+      </div> 
+      <!-- /.row Publicacion 2 -->
+
+      <hr>
+
+      
+      <!--Publicacion 3-->
+      <div class="row justify-content-center">  
+        <div class="col-md-5">
+          <li id="nombre_publicacion"><span class="glyphicon glyphicon-user"></span>UsuarioO</li>
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="imagenes/500x300.png" alt="">
+          </a>
+            <div class="miCalificacion">
+              Tu puntuación:
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label>★</label>
+              <label>★</label><br>
+            </div>
+        </div>
+        <div class="col-md-l" style="padding-right: 40px">
+          <form>
+            <p class="promedioCalificacion">
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label style="color: yellow">★</label><br>
+              <label>★</label><br>
+            </p>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h4>Comentarios</h4>
+          <p><b>UsuarioD: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioB: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioE: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+
+          <div class="col-md-10">
+            <input type="text" class="form-control"  placeholder="Agrega un comentario..." >
+          </div>
+          <div class="col-md-2" style="padding-left: 2px">
+            <button type="button" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+          </div>
+        </div>
+      </div> 
+      <!-- /.row Publicacion 3 -->
+
+      <hr>
+
+      <!--Publicacion 4-->
+      <div class="row justify-content-center">  
+        <div class="col-md-5">
+          <li id="nombre_publicacion"><span class="glyphicon glyphicon-user"></span>UsuarioP</li>
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="imagenes/500x300.png" alt="">
+          </a>
+             <div class="miCalificacion">
+              Tu puntuación:
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label style="color: yellow">★</label>
+              <label>★</label>
+              <label>★</label><br>
+            </div> <!-- form-group end.// -->
+        </div>
+
+        <div class="col-md-l" style="padding-right: 40px">
+          <form>
+            <p class="promedioCalificacion">
+              <label style="color: yellow">★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+              <label>★</label><br>
+            </p>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h4>Comentarios</h4>
+          <p><b>UsuarioA: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioF: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+          <p><b>UsuarioG: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
+
+          <div class="col-md-10">
+            <input type="text" class="form-control"  placeholder="Agrega un comentario..." >
+          </div>
+          <div class="col-md-2" style="padding-left: 2px">
+            <button type="button" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+          </div>
+        </div>
+      </div> 
+      <!-- /.row Publicacion 4 -->
+      <!-- /.row -->
+
+      <hr>
+     
+    </div>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

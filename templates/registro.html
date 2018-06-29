@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Registro - ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top"  id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="index.html" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto"  id="Menu_Derecha">
+            <li class="nav-item active">
+              <select>
+                <option>Español</option>
+                <option>Ingles</option>
+                <option>Frances</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+        <div class="col-md-6"> 
+            <img src="imagenes/450x530.png">
+        </div>
+          
+        <div class="col-md-6">
+          <div class="card">
+            <header class="card-header">
+              <a  class="float-right btn btn-outline-primary mt-1" id="iniciarSesion" href="index.html">Iniciar Sesión</a>
+              <h4 class="card-title mt-2">Registro</h4>
+            </header>
+            <article class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="col form-group">
+                    <label>Nombre</label>   
+                    <input type="text" class="form-control" placeholder="">
+                  </div> <!-- form-group end.// -->
+                  <div class="col form-group">
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" placeholder=" ">
+                  </div> <!-- form-group end.// -->
+                </div> <!-- form-row end.// -->
+                <div class="form-group">
+                  <label>Correo</label>
+                  <input type="email" class="form-control" placeholder="">
+                </div> <!-- form-group end.// -->
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Telefono</label>
+                    <input type="text" class="form-control">
+                  </div> <!-- form-group end.// -->
+                  <div class="form-group col-md-6">
+                    <label>Sexo</label>
+                    <select id="inputState" class="form-control" style="padding-bottom: 25px">
+                      <option>Femenino</option>
+                      <option>Masculino</option>
+                    </select>
+                  </div> <!-- form-group end.// -->
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Ciudad</label>
+                    <input type="text" class="form-control">
+                  </div> <!-- form-group end.// -->
+                  <div class="form-group col-md-6">
+                    <label>Pais</label>
+                    <select id="inputState" class="form-control" style="padding-bottom: 25px">
+                      <option>Argentina</option>
+                      <option>Estados Unidos</option>
+                      <option>España</option>
+                      <option>Venezuela</option>
+                      <option>Vietnam</option>
+                    </select>
+                  </div> <!-- form-group end.// -->
+                </div> <!-- form-row.// -->
+                <div class="form-group">
+                  <label>Fecha de Nacimiento:</label>
+                  <input type="date" name="cumpleaños" step="1" min="1930-01-01" max="2018-05-31" value="2000-10-15">
+                </div>
+                <div class="form-group">
+                  <label>Contraseña</label>
+                  <input class="form-control" type="password">
+                  <label>Repetir Contraseña</label>
+                  <input class="form-control" type="password">
+                </div>  
+                <div class="form-group">
+                  <!--<button type="submit" class="btn btn-primary btn-block">Registrar</button>-->
+                  <a href="inicio.html" target="_self"><input class="btn btn-primary btn-block" type="button" name="boton" value="Registrar"/></a><br>
+                </div> <!-- form-group// --> 
+                <div class="border-top card-body text-center">     
+                  <small class="text-muted">Al registrarte estas aceptando los Terminos y Condiciones de Uso <br> Gracias por Preferirnos</small> 
+                </div>   
+              </form>
+            </article> <!-- card-body end .// -->
+        </div> <!-- card.// -->
+		</div>
+
+
+
+          </div><!-- col.1.2//-->
+
+
+        </div> <!-- col.//-->
+      </div> <!-- row.//-->
+    </div> 
+  <!-- /.container -->
+  <br>
+
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+  </body>
+
+</html>
