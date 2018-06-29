@@ -106,22 +106,24 @@
           <div class="card my-4">
             <a class="card-header">Inicia Sesión</a>
             <div class="card-body">
-              <form accept-charset="UTF-8" role="form" id="login-form" method="post">
-              <fieldset>
-                <div class="form-group input-group">
-                  <span class="input-group-addon">@</span>
-                  <input class="form-control" placeholder="Email" name="email" type="email" required="" autofocus="">
-                </div>
-                <div class="form-group input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
-                </div>
-                <div class="form-group">
-                   <!-- <button type="submit" class="btn btn-primary btn-block">Entrar</button> -->
-                  <a href="inicio.html" target="_self"><input class="btn btn-primary btn-block" type="button" name="boton" value="Entrar"/>  
-                  <p class="help-block"><a class="pull-right text-muted" href="recuperarContraseña.html"><small>¿Olvidaste tu contraseña?</small></a></p>
-                </div>
-              </fieldset>
+              <form accept-charset="UTF-8" role="form" id="login-form" method="post" action="login">
+                <fieldset>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">@</span>
+                    <input class="form-control" placeholder="Email" id="email" name="email" type="email" required="" autofocus="">
+                  </div>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input class="form-control" placeholder="Password" id="password" name="password" type="password" value="" required="">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    {% if error %}
+                      <p style="font-size: 16px;color: red;text-align: center;">Email o contraseña invalida</p>
+                    {% endif %}
+                    <p class="help-block"><a class="pull-right text-muted" href="recuperarContraseña.html"><small>¿Olvidaste tu contraseña?</small></a></p>
+                  </div>
+                </fieldset>
               </form>
             </div>
           </div>
