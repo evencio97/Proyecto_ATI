@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for, escape
 from pymongo import *
+import os
  
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
+#Clave secreta para la cifrar las sesiones
+app.secret_key = os.urandom(16)
 # MongoDB Connection with PyMongo
 client = MongoClient()
 
@@ -12,6 +15,10 @@ usuarios = db.usuarios
 # Routes Definition
 @app.route('/')
 def index():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('inicio.html')
+	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
 @app.route('/registrarse')
@@ -22,6 +29,53 @@ def registrarse():
 def iniciarSesion():
 	return render_template('index.html')
 
+@app.route('/miPerfil')
+def goToPerfil():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('miPerfil.html')
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+@app.route('/notificaciones')
+def goToNotificaciones():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('Notificaciones.html')
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+@app.route('/editarPerfil')
+def goToEditPerfil():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('EditarPerfil.html')
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+@app.route('/buscarUsuario')
+def goToBuscarU():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('BuscarUsuario.html')
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+@app.route('/cargarFoto')
+def goToCargarFoto():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('cargarFoto.html')
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+#Salir
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return render_template('index.html')
+
 #Methos definition
 #Inicio de Sesion
 @app.route('/login', methods=['POST'])
@@ -31,6 +85,7 @@ def login():
 
 	user = usuarios.find_one({ "email": email })
 	if user["pwd"] == password:
+		session['username'] = user['userName']
 		return render_template('inicio.html', nombre = user["nombre"])
 	return render_template('index.html', error = 1)
 
@@ -60,6 +115,8 @@ def registro():
 	elif user2 != None:
 		#Existe el nombre de usuario
 		return render_template('registro.html', error = 3)
+
+
 
 #Inicio del Servidor
 if __name__ == '__main__':

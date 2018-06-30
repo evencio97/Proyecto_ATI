@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <div class="card">
               <header class="card-header">
-                <a  class="float-right btn btn-outline-primary mt-1" id="iniciarSesion" href="/">Iniciar Sesión</a>
+                <a  class="float-right btn btn-outline-primary mt-1" id="iniciarSesion" href="iniciar-sesion">Iniciar Sesión</a>
                 <h4 class="card-title mt-2">Registro</h4>
               </header>
               <article class="card-body">
@@ -76,9 +76,21 @@
                       <input type="text" class="form-control" name="apellido" placeholder="" required="">
                     </div> <!-- form-group end.// -->
                   </div> <!-- form-row end.// -->
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Nombre de Usuario</label>
+                      <input type="text" class="form-control" name="userName" placeholder="" required="">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group col-md-6">
+                      <label>Seguridad</label>
+                      <select class="form-control" name="seguridad" style="padding-bottom: 25px" required="">
+                        <option>Publico</option>
+                        <option>Privado</option>
+                      </select>
+                    </div> <!-- form-group end.// -->
+                  </div>
+
                   <div class="form-group">
-                    <label>Nombre de Usuario</label>   
-                    <input type="text" class="form-control" name="userName" placeholder="" required="">
                     <label>Correo</label>
                     <input type="email" class="form-control" name="email" placeholder="" required="">
                   </div> <!-- form-group end.// -->
