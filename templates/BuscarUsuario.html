@@ -11,11 +11,11 @@
     <title>ATIstagram</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
       <div class="container">
-        <a class="navbar-brand text-white"  href="index.html" id="ATIstagram">ATIstagram</a>
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,23 +35,23 @@
         <div class="collapse navbar-collapse" id="navbarResponsive" >
           <ul class="navbar-nav ml-auto" id="Menu_Centro">
             <li class="nav-item">
-              <a class="nav-link" href="inicio.html">Inicio
+              <a class="nav-link" href="/">Inicio
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="miPerfil.html">Mi Perfil</a>
+              <a class="nav-link" href="miPerfil">Mi Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Notificaciones.html">Notificaciones</a>
+              <a class="nav-link" href="notificaciones">Notificaciones</a>
             </li>
           </ul>
         </div>
         <div id="navbarResponsive" style="list-style: none;">
-          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">Mi Usuario</a>
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
             <ul class="dropdown-menu" >
-              <li><a href="EditarPerfil.html">Editar Perfil</a></li>
-              <li><a  href="index.html">Cerrar Sesión</a></li>
+              <li><a href="editarPerfil">Editar Perfil</a></li>
+              <li><a  href="logout">Cerrar Sesión</a></li>
           </ul>
           </li>
         </div>
@@ -60,88 +60,56 @@
    
     <!-- Page Content -->
     <div class="container">
-     
       <!-- Buscador -->
       <div class="row justify-content-center">
         <div class="col-md-12" >
           <div class="col-md-6 col-md-offset-3">
             <div id="imaginary_container"> 
                 <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="Buscar Usuario" >
+                  <form accept-charset="UTF-8" role="form" method="post" action="buscarUsuario" id="buscarU">
+                    <input type="text" class="form-control"  placeholder="Buscar Usuario" id="userAB" name="userB">
                     <span class="input-group-addon">
                         <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>  
+                            <a target="_self">
+                              <span class="glyphicon glyphicon-search"></span>
+                            </a>
+                        </button>
                     </span>
+                  </form>
                 </div>
             </div>
           </div>
         </div>   
       </div>
     </div>  
-<!-- Resultados de la Busqueda -->        
-<div class="container">
-	<div class="row">
-		<div class="col-xs-offset-2 col-xs-2">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
-		</div>
-		<div class="col-xs-4">
-			<div class="centrado-vertical nombre-usuario"><a href="otroPerfil.html"> USUARIO X</a></div>
-		</div>
-		<div class="col-xs-2">
-			<div  class="centrado-vertical">
-				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-xs-offset-2 col-xs-2">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
-		</div>
-		<div class="col-xs-4">
-			<div class="centrado-vertical nombre-usuario">USUARIO XY</div>
-		</div>
-		<div class="col-xs-2">
-			<div  class="centrado-vertical">
-				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-xs-offset-2 col-xs-2">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
-		</div>
-		<div class="col-xs-4">
-			<div class="centrado-vertical nombre-usuario">USUARIO XYZ</div>
-		</div>
-		<div class="col-xs-2">
-			<div  class="centrado-vertical">
-				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-xs-offset-2 col-xs-2">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
-		</div>
-		<div class="col-xs-4">
-			<div class="centrado-vertical nombre-usuario">USUARIO XY_</div>
-		</div>
-		<div class="col-xs-2">
-			<div  class="centrado-vertical">
-				<button type="button" class="btn btn-primary btn-lg active">Seguir</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- FIN Resultados de la Busqueda -->
+    <!-- Resultados de la Busqueda -->        
+    <div class="container">
+      {% if flag==0 %}
+        <p style="font-size: 16px;color: red;text-align: center;">Error: busque por el nombre y apellido</p>
+      {% elif tam==0 %}
+        <p style="font-size: 16px;text-align: center;">No se obtuvieron resultados</p>
+      {% else %}
+        {% for user in datos %}
+          <div class="row">
+            <div class="col-xs-offset-2 col-xs-2">
+              <img class="foto-buscador" src="../static/imagenes/usuario80x80.png" alt="">
+            </div>
+            <div class="col-xs-4">
+              <div class="centrado-vertical nombre-usuario"><a href="perfil">{{user["nombre"]+" "+user["apellido"]}}</a></div>
+            </div>
+            <div class="col-xs-2">
+              <div  class="centrado-vertical">
+                <button type="button" class="btn btn-primary btn-lg active">Seguir</button>
+              </div>
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      {% endif %}
+      <!-- FIN Resultados de la Busqueda -->
 
       <!-- Pagination -->
-
-      <div class="row justify-content-center">
+      <!--<div class="row justify-content-center">
         <div class="col-md-12" >
           <div class="col-md-3 col-md-offset-5">
             <ul class="pagination justify-content-center">
@@ -169,10 +137,10 @@
             </ul>
           </div>
         </div>
-      </div>      
+      </div>-->  
 
     </div>
-      <!-- /.container -->
+    <!-- /.container -->
     <!-- Footer -->
     <footer class="py-5">
       <div class="container">
@@ -182,9 +150,23 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script type="text/javascript">
+      //Validamos el input antes de hacer el submit
+      $("#buscarU").submit(function(event){
+        var userAB = $('#userAB').val();
+        var res = userAB.split(" ");
+        if ((!userAB)||(userAB == null)||(userAB.length <= 0 )||(res.length <= 0)){
+          event.preventDefault();
+          alert("Error: debe introducir el usuario a buscar");
+        } else if(res.length > 2){
+          event.preventDefault();
+          alert("Error: debe introducir solo el nombre y/o apellido del usuario a buscar");
+        }
+      });
+    </script>
   </body>
 
 </html>

@@ -17,10 +17,11 @@ usuarios = db.usuarios
 def index():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('inicio.html')
+		return render_template('inicio.html', user = session['username'])
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
+@app.route('/registro')
 @app.route('/registrarse')
 def registrarse():
 	return render_template('registro.html')
@@ -53,14 +54,6 @@ def goToEditPerfil():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
-@app.route('/buscarUsuario')
-def goToBuscarU():
-	if 'username' in session:
-		#El usuario tiene sesion abierta
-		return render_template('BuscarUsuario.html')
-	#El usuario no ha iniciado sesion
-	return render_template('index.html')
-
 @app.route('/cargarFoto')
 def goToCargarFoto():
 	if 'username' in session:
@@ -69,12 +62,31 @@ def goToCargarFoto():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
-#Salir
+@app.route('/registro')
+
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     return render_template('index.html')
+
+@app.route('/login')
+def gotoHome():	
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('inicio.html', user = session["username"])
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+@app.route('/buscarUsuario')
+def goToBuscarU():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		return render_template('BuscarUsuario.html', user = session['username'])
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
+
+
 
 #Methos definition
 #Inicio de Sesion
@@ -86,7 +98,7 @@ def login():
 	user = usuarios.find_one({ "email": email })
 	if user["pwd"] == password:
 		session['username'] = user['userName']
-		return render_template('inicio.html', nombre = user["nombre"])
+		return render_template('inicio.html', user = user["userName"])
 	return render_template('index.html', error = 1)
 
 #Registro de Usuario
@@ -116,6 +128,23 @@ def registro():
 		#Existe el nombre de usuario
 		return render_template('registro.html', error = 3)
 
+#Buscar Usuario
+@app.route('/buscarUsuario', methods=['POST'])
+def buscarU():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		data = request.form['userB'].split(" ")
+		tam = len(data)
+		x = 1
+		if (tam == 1):
+			resuls = db.usuarios.find({"nombre": data[0]},{ "_id": 0, "nombre": 1, "apellido": 1 })
+		elif (tam == 2):
+			resuls = db.usuarios.find({"nombre": data[0],"apellido": data[1]},{ "_id": 0, "nombre": 1, "apellido": 1 })
+		else:
+			x = 0
+		return render_template('BuscarUsuario.html', user = session['username'], flag = x, datos = resuls, tam = resuls.count())
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
 
 
 #Inicio del Servidor

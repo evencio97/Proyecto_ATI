@@ -24,7 +24,7 @@
         color: white;
       }
     </style>
-    
+
   </head>
 
   <body id="cuerpo">
@@ -53,7 +53,7 @@
           </ul>
         </div>
         <div id="navbarResponsive" style="list-style: none;">
-          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">Mi Usuario</a>
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
             <ul class="dropdown-menu" >
               <li><a href="editarPerfil">Editar Perfil</a></li>
               <li><a  href="logout">Cerrar Sesión</a></li>
@@ -73,14 +73,16 @@
           <div class="col-md-6 col-md-offset-3">
             <div id="imaginary_container"> 
                 <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="Buscar Usuario" >
+                  <form accept-charset="UTF-8" role="form" method="post" action="buscarUsuario" id="buscarU">
+                    <input type="text" class="form-control"  placeholder="Buscar Usuario" id="userAB" name="userB">
                     <span class="input-group-addon">
-                        <!--<button type="submit"> -->
-                            <a href="buscarUsuario" target="_self">
+                        <button type="submit">
+                            <a target="_self">
                               <span class="glyphicon glyphicon-search"></span>
                             </a>
-                        <!--</button>  -->
+                        </button>
                     </span>
+                  </form>
                 </div>
             </div>
           </div>
@@ -289,6 +291,21 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/jquery/jquery.min.js"></script>
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+      //Validamos el input antes de hacer el submit
+      $("#buscarU").submit(function(event){
+        var userAB = $('#userAB').val();
+        var res = userAB.split(" ");
+        if ((!userAB)||(userAB == null)||(userAB.length <= 0 )||(res.length <= 0)){
+          event.preventDefault();
+          alert("Error: debe introducir el usuario a buscar");
+        } else if(res.length > 2){
+          event.preventDefault();
+          alert("Error: debe introducir solo el nombre y/o apellido del usuario a buscar");
+        }
+      });
+    </script>
 
   </body>
 
