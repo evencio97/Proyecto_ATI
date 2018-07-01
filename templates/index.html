@@ -56,49 +56,27 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
           <h2 class="my-3">Tendencias</h2>
-            <!-- Publicacion1 -->
-              
-                <div class="card mb-4">
-                  <img class="card-img-top" src="../static/imagenes/750x300.png" alt="Card image cap">
-                    <div class="card-body">
-                      <h2 class="card-title">UsuarioA</h2>
-                      <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    </div>
-                  <div class="card-footer text-muted">
-                    2 Junio, 2018
-                  </div>
-                </div>
-               <div class="col-md-12"><hr></div>
-
-              <!-- Publicacion2 -->
-              
-                <div class="card mb-4">
-                  <img class="card-img-top" src="../static/imagenes/750x300.png" alt="Card image cap">
+          
+          <!-- Publicaciones -->
+          {% if data != None %}
+            {% for x in data %}
+              <div class="card mb-4">
+                <img class="card-img-top postImg {{x['filtro']}}" src="{{x['imagen']}}" alt="Card image cap">
                   <div class="card-body">
-                    <h2 class="card-title">UsuarioB</h2>
-                    <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                    <h2 class="card-title">{{x["userName"]}}</h2>
+                    <p class="card-text">Descripcion: {{x["desc"]}}</p>
                   </div>
-                  <div class="card-footer text-muted">
-                    2 Junio, 2018
-                  </div>
-                </div>  
-              <div class="col-md-12"><hr></div>              
-
-              <!-- Publicacion3 -->
-                
-                <div class="card mb-4">
-                  <img class="card-img-top" src="../static/imagenes/750x300.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h2 class="card-title">UsuarioC</h2>
-                    <p class="card-text">Descripcion: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                  </div>
-                  <div class="card-footer text-muted">
-                    2 Junio, 2018
-                  </div>
+                <div class="card-footer text-muted">
+                  {{x["fecha"].strftime("%X")}} {{ x["fecha"].strftime("%x") }}
                 </div>
-              <div class="col-md-12"><hr></div>  
-              
-      </div><!-- Col-md-8 -->
+              </div>
+             <div class="col-md-12"><hr></div>
+            {% endfor %}
+          {% else %}
+            <p style="font-size: 16px;text-align: center;">No se obtuvieron resultados!</p>
+          {% endif %}  
+
+        </div><!-- Col-md-8 -->
 
         <!-- Widgets Column -->
         <div class="col-md-4" style="padding-top: 25px">

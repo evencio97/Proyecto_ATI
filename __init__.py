@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, session, redirect, url_for, e
 from werkzeug.utils import secure_filename
 from pymongo import *
 import os
- 
+import datetime
+
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
 #Clave secreta para la cifrar las sesiones
@@ -25,7 +26,7 @@ def index():
 		#El usuario tiene sesion abierta
 		return render_template('inicio.html', user = session['username'])
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/registro')
 @app.route('/registrarse')
@@ -34,7 +35,7 @@ def registrarse():
 
 @app.route('/iniciar-sesion')
 def iniciarSesion():
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/miPerfil')
 def goToPerfil():
@@ -42,7 +43,7 @@ def goToPerfil():
 		#El usuario tiene sesion abierta
 		return render_template('miPerfil.html')
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/notificaciones')
 def goToNotificaciones():
@@ -50,7 +51,7 @@ def goToNotificaciones():
 		#El usuario tiene sesion abierta
 		return render_template('Notificaciones.html')
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/editarPerfil')
 def goToEditPerfil():
@@ -58,7 +59,7 @@ def goToEditPerfil():
 		#El usuario tiene sesion abierta
 		return render_template('EditarPerfil.html')
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/cargarFoto')
 def goToCargarFoto():
@@ -66,7 +67,7 @@ def goToCargarFoto():
 		#El usuario tiene sesion abierta
 		return render_template('cargarFoto.html', user = session["username"])
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/registro')
 
@@ -74,7 +75,7 @@ def goToCargarFoto():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
-    return render_template('index.html')
+    return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/login')
 def gotoHome():	
@@ -82,7 +83,7 @@ def gotoHome():
 		#El usuario tiene sesion abierta
 		return render_template('inicio.html', user = session["username"])
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/seguirUsuario')
 @app.route('/buscarUsuario')
@@ -91,7 +92,7 @@ def goToBuscarU():
 		#El usuario tiene sesion abierta
 		return render_template('BuscarUsuario.html', user = session['username'])
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 
 
@@ -106,7 +107,7 @@ def login():
 	if user["pwd"] == password:
 		session['username'] = user['userName']
 		return render_template('inicio.html', user = user["userName"])
-	return render_template('index.html', error = 1)
+	return render_template('index.html', error = 1, data = newPost("Publico",None))
 
 #Registro de Usuario
 @app.route('/registro', methods=['POST'])
@@ -151,7 +152,7 @@ def buscarU():
 			x = 0
 		return render_template('BuscarUsuario.html', user = session['username'], flag = x, datos = resuls, tam = resuls.count())
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
 @app.route('/seguirUsuario', methods=['POST'])
 def seguirU():
@@ -198,16 +199,26 @@ def cargarF():
 			#Guardamos la publicacion en la BD
 			data = request.form.to_dict()
 			data["userName"] = session['username']
-			data["imagen"] = os.path.join(ruta, nombreImg)
+			data["imagen"] = "../static/publicaciones/"+session['username']+"/"+nombreImg
+			data["seguridad"] = usuarios.find_one({ "userName": session['username'] })["seguridad"]
+			data["fecha"] = datetime.datetime.now()
 			db.publicaciones.insert_one(data)
 			return render_template('cargarFoto.html', user = session["username"], flag = 1)
 		else:
 			return render_template('cargarFoto.html', user = session["username"], flag = -2)
 
 	#El usuario no ha iniciado sesion
-	return render_template('index.html')
+	return render_template('index.html', data = newPost("Publico",None))
 
-
+#Devuelve las publicaciones mas nuevas segun el tipo o usuario
+def newPost(tipo,userN):
+	if userN is None:
+		#buscamos segun el tipo
+		data = db.publicaciones.find({"seguridad": "Publico"}).sort("fecha", -1).limit(12)
+		return data
+	else:
+		#Buscamos segun el usuario
+		return None
 
 #Inicio del Servidor
 if __name__ == '__main__':
