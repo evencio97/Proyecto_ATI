@@ -11,6 +11,7 @@ client = MongoClient()
 
 db = client.db_atistagram
 usuarios = db.usuarios
+sigue = db.sigue
 
 # Routes Definition
 @app.route('/')
@@ -78,6 +79,7 @@ def gotoHome():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
+@app.route('/seguirUsuario')
 @app.route('/buscarUsuario')
 def goToBuscarU():
 	if 'username' in session:
@@ -137,14 +139,30 @@ def buscarU():
 		tam = len(data)
 		x = 1
 		if (tam == 1):
-			resuls = db.usuarios.find({"nombre": data[0]},{ "_id": 0, "nombre": 1, "apellido": 1 })
+			resuls = db.usuarios.find({"nombre": data[0]},{ "_id": 0,"userName": 1, "nombre": 1, "apellido": 1 })
 		elif (tam == 2):
-			resuls = db.usuarios.find({"nombre": data[0],"apellido": data[1]},{ "_id": 0, "nombre": 1, "apellido": 1 })
+			resuls = db.usuarios.find({"nombre": data[0],"apellido": data[1]},{ "_id": 0,"userName": 1,"nombre": 1, "apellido": 1 })
 		else:
 			x = 0
 		return render_template('BuscarUsuario.html', user = session['username'], flag = x, datos = resuls, tam = resuls.count())
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
+
+@app.route('/seguirUsuario', methods=['POST'])
+def seguirU():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		data = request.form['userN']
+		
+		if (session['username']==data):
+			return "mismo"
+		elif (sigue.find_one({ "userName_1": session['username'],"userName_2": data} ) is None):
+			#Como no existe creamos la relacion de seguimiento
+			db.sigue.insert_one({ "userName_1": session['username'],"userName_2": data })
+			return "listo"
+		#Ya el usuario sigue al otro
+		return "existe"
+
 
 
 #Inicio del Servidor
