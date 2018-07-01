@@ -183,3 +183,19 @@ div .centrado-vertical{
 	}
 	}
 }
+
+/*Filtros*/
+.contrast {
+  -webkit-filter: contrast(200%);
+  filter: contrast(200%);
+}
+
+.grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.sepia {
+  -webkit-filter: sepia(100%);
+  filter: sepia(100%);
+}

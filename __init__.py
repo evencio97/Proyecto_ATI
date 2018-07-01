@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, escape
+from werkzeug.utils import secure_filename
 from pymongo import *
 import os
  
@@ -12,6 +13,10 @@ client = MongoClient()
 db = client.db_atistagram
 usuarios = db.usuarios
 sigue = db.sigue
+publicaciones = db.publicaciones
+
+#extenciones aceptadas
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 # Routes Definition
 @app.route('/')
@@ -59,7 +64,7 @@ def goToEditPerfil():
 def goToCargarFoto():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('cargarFoto.html')
+		return render_template('cargarFoto.html', user = session["username"])
 	#El usuario no ha iniciado sesion
 	return render_template('index.html')
 
@@ -162,6 +167,45 @@ def seguirU():
 			return "listo"
 		#Ya el usuario sigue al otro
 		return "existe"
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/cargarFoto', methods=['POST'])
+def cargarF():
+	if 'username' in session:
+		#El usuario tiene sesion abierta
+		if 'imagen' not in request.files:
+			return render_template('cargarFoto.html', user = session["username"], flag = 0)
+		
+		#Validamos que le archivo se haya recibido bien
+		file = request.files['imagen']
+
+		if file.filename == '':
+			return render_template('cargarFoto.html', user = session["username"], flag = -1)
+		if file and allowed_file(file.filename):
+			#Definimos la ruta y nombre del archivo
+			nombreImg = secure_filename(file.filename)
+			aux = app.root_path+"\static\publicaciones"
+			ruta = os.path.join(aux, session['username'])
+			#Si no exite la ruta la creamos
+			if not os.path.exists(ruta):
+				#Creamos el directorio
+				os.makedirs(ruta)
+        	#Guardamos el archivo
+			file.save(os.path.join(ruta, nombreImg))
+			#Guardamos la publicacion en la BD
+			data = request.form.to_dict()
+			data["userName"] = session['username']
+			data["imagen"] = os.path.join(ruta, nombreImg)
+			db.publicaciones.insert_one(data)
+			return render_template('cargarFoto.html', user = session["username"], flag = 1)
+		else:
+			return render_template('cargarFoto.html', user = session["username"], flag = -2)
+
+	#El usuario no ha iniciado sesion
+	return render_template('index.html')
 
 
 
