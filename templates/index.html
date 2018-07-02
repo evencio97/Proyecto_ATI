@@ -22,6 +22,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/fb.js"></script>
 
   </head>
 
@@ -110,13 +111,16 @@
             <div class="card-body">
               <div class="form-group">
                 <a href="registrarse"><input class="btn btn-primary btn-block" value="Registro"/></a><br> 
-                <a class="btn btn-block btn-social btn-facebook" style="color: white">
+                <a class="btn btn-block btn-social btn-facebook" style="color: white" onclick="login_fb()">
                   <i class="fab fa-facebook"></i> Iniciar Sesión con Facebook
                 </a>
+                <form class="log" action="twitter_login" method="POST">
+                  <input id="login_button" class="uibutton large confirm" type="submit" value="LogIn">
                 <a class="btn btn-block btn-social btn-tw" style="color: white">
                   <i class="fab fa-twitter"></i> Iniciar Sesión con Twitter
                 </a>
-                
+                 </form>
+                <div><p id="status"></p></div>
               </div>  
             </div>
           </div>

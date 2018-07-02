@@ -3,9 +3,21 @@ from werkzeug.utils import secure_filename
 from pymongo import *
 import os
 import datetime
+import facebook
+import tweepy
 from itertools import chain
 
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
+
+#-----------Twitter-----------------------
+CONSUMER_KEY = 'F5jfpDLAJYcOlXXbqdx8lb9Rl'
+CONSUMER_SECRET = 'gh3NfO2caBPVlfNtJLZ7dPGgzQmDZoKKhmjEHx4ZfRnvw20HB9'
+ACCESS_TOKEN = '260342983-BCMoR7AY2R7mdsvkDIpSV2vY9APmxRVV70WaSLEm'
+ACCESS_TOKEN_SECRET = 'wTdjF5NaSn5mPLAlwrjvdY6YZQ7jstZNpdnzIakEMHbjY'
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
+api = None
 
 #Clave secreta para la cifrar las sesiones
 app.secret_key = os.urandom(16)
@@ -210,6 +222,14 @@ def cargarF():
 
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
+
+@app.route('/twitter_login',methods=['POST','GET'])
+def twitter_login():
+	#api.update_status(status = "Hey, I'm tweeting with Tweepy!") #Crear Tweet
+	global api
+	api = tweepy.API(auth)
+	user = api.me()
+	return render_template('Inicio.html', user = user.name)	
 
 #Devuelve las publicaciones mas nuevas segun el tipo o usuario
 def newPost(tipo,userN):

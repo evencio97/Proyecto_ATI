@@ -1,4 +1,4 @@
-var fbAppId = '194084651239617';
+var fbAppId = '187025081955258';
 var ID;
 var accessToken;
 //var objectToLike = 'http://www.ign.com/videos/2013/11/01/battlefield-4-next-gen-vs-current-gen';
