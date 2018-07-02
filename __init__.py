@@ -117,7 +117,9 @@ def login():
 	password  = request.form['password']
 
 	user = usuarios.find_one({ "email": email })
-	if user["pwd"] == password:
+	if user is None:
+		return render_template('index.html', error = 2, data = newPost("Publico",None))
+	elif user["pwd"] == password:
 		session['username'] = user['userName']
 		return render_template('inicio.html', user = user["userName"], data = newPost(None,user["userName"]))
 	return render_template('index.html', error = 1, data = newPost("Publico",None))
@@ -138,7 +140,7 @@ def registro():
 		data = request.form.to_dict()
 		del(data["pwd2"])
 		db.usuarios.insert_one(data)
-		return render_template('registro.html', exito = 1)
+		return render_template('Inicio.html', user = data["userName"], data = newPost(None,data["userName"]))
 	elif user != None and user2 != None:
 		#Existe el email y el userName
 		return render_template('registro.html', error = 1)
