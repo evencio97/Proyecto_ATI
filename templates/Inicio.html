@@ -95,25 +95,23 @@
       </div>
       <div align="center">
         <!-- Publicaciones -->
-        {% if data%}
-          {% for y in data %}
-            {% for x in y %}
+        {% if data != None %}
+          {% for x in data %}
 
-              <div class="card mb-4"  style="max-width: 70%;">
-                <div align="center">
-                  <img class="card-img-top {{x['filtro']}}" style=" max-width: 80%;" src="{{x['imagen']}}" alt="Card image cap">
-                </div>
-                <div class="card-body" align="left">
-                  <h2 class="card-title">{{x["userName"]}}</h2>
-                  <p class="card-text">Descripcion: {{x["desc"]}}</p>
-                </div>
-                <div class="card-footer text-muted">
-                  {{x["fecha"].strftime("%X")}} {{ x["fecha"].strftime("%x") }}
-                </div>
+            <div class="card mb-4"  style="max-width: 70%;">
+              <div align="center">
+                <img class="card-img-top {{x['filtro']}}" style=" max-width: 80%;" src="{{x['imagen']}}" alt="Card image cap">
               </div>
-              <div class="col-md-12"><hr></div>
+              <div class="card-body" align="left">
+                <h2 class="card-title">{{x["userName"]}}</h2>
+                <p class="card-text">Descripcion: {{x["desc"]}}</p>
+              </div>
+              <div class="card-footer text-muted">
+                {{x["fecha"].strftime("%X")}} {{ x["fecha"].strftime("%x") }}
+              </div>
+            </div>
+            <div class="col-md-12"><hr></div>
 
-            {% endfor %}
           {% endfor %}
         {% else %}
           <p style="font-size: 16px;text-align: center;">No se obtuvieron resultados!</p>

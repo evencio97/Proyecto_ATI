@@ -240,18 +240,13 @@ def newPost(tipo,userN):
 		data = db.publicaciones.find({"seguridad": "Publico"}).sort("fecha", -1).limit(20)
 		return data
 	else:
-		#Buscamos segun el usuario
-		seguidos = db.sigue.find({"userName_1": userN})
-		data = []
-		
+		seguidos = list(db.sigue.find({"userName_1": userN},{ "_id": 0,"userName_2": 1 }))
+		aux = []
 		for x in seguidos:
-			aux = db.publicaciones.find({"userName": x["userName_2"]}).sort("fecha", -1).limit(10)
-			if aux.count() > 0:
-				data.append(aux)
-
-		if data != []:
-			return data
-		return None
+			aux.append(x["userName_2"])
+		#Buscamos segun el usuario
+		data = db.publicaciones.find({"$or":[{"userName": userN},{"userName": { "$in": aux}}]}).sort("fecha", -1)
+		return data
 
 #Inicio del Servidor
 if __name__ == '__main__':
