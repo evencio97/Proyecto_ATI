@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 from pymongo import *
 import os
 import datetime
+from itertools import chain
 
 app = Flask(__name__, template_folder = 'templates', static_folder = 'static')
 
@@ -24,7 +25,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def index():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('inicio.html', user = session['username'])
+		return render_template('inicio.html', user = session['username'], data = newPost(None,session["username"]))
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -81,7 +82,7 @@ def logout():
 def gotoHome():	
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('inicio.html', user = session["username"])
+		return render_template('inicio.html', user = session["username"], data = newPost(None,session["username"]))
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -106,7 +107,7 @@ def login():
 	user = usuarios.find_one({ "email": email })
 	if user["pwd"] == password:
 		session['username'] = user['userName']
-		return render_template('inicio.html', user = user["userName"])
+		return render_template('inicio.html', user = user["userName"], data = newPost(None,user["userName"]))
 	return render_template('index.html', error = 1, data = newPost("Publico",None))
 
 #Registro de Usuario
@@ -214,10 +215,20 @@ def cargarF():
 def newPost(tipo,userN):
 	if userN is None:
 		#buscamos segun el tipo
-		data = db.publicaciones.find({"seguridad": "Publico"}).sort("fecha", -1).limit(12)
+		data = db.publicaciones.find({"seguridad": "Publico"}).sort("fecha", -1).limit(20)
 		return data
 	else:
 		#Buscamos segun el usuario
+		seguidos = db.sigue.find({"userName_1": userN})
+		data = []
+		
+		for x in seguidos:
+			aux = db.publicaciones.find({"userName": x["userName_2"]}).sort("fecha", -1).limit(10)
+			if aux.count() > 0:
+				data.append(aux)
+
+		if data != []:
+			return data
 		return None
 
 #Inicio del Servidor
