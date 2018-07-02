@@ -28,6 +28,7 @@ db = client.db_atistagram
 usuarios = db.usuarios
 sigue = db.sigue
 publicaciones = db.publicaciones
+calificaciones = db.calificaciones
 
 #extenciones aceptadas
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])

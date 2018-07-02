@@ -104,7 +104,20 @@
               </div>
               <div class="card-body" align="left">
                 <h2 class="card-title">{{x["userName"]}}</h2>
-                <p class="card-text">Descripcion: {{x["desc"]}}</p>
+                <p style="font-size: 1.3em;"><b>Descripcion:</b> {{x["desc"]}}</p>
+                <br>
+                <p style="font-size: 1.3em;"><b>Calificaciones:</b></p>
+                <p style="font-size: 1.3em;"><b>UsuarioA</b> califico tu foto con: 3</p><br>
+                <p style="font-size: 1.3em;"><b>UsuarioB</b> califico tu foto con: 4</p><br>
+                <p style="font-size: 1.3em;"><b>UsuarioC</b> califico tu foto con: 5</p><br>
+                <form accept-charset="UTF-8" role="form" method="post" action="califcImg" id="califcImg">
+                  <div class="col-md-10">
+                    <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Califica la imagen..." id="valor">
+                  </div>
+                  <div class="col-md-2" style="padding-left: 2px">
+                    <button type="submit" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+                  </div>
+                </form>
               </div>
               <div class="card-footer text-muted">
                 {{x["fecha"].strftime("%X")}} {{ x["fecha"].strftime("%x") }}
@@ -117,49 +130,32 @@
           <p style="font-size: 16px;text-align: center;">No se obtuvieron resultados!</p>
         {% endif %}
       </div>
+
       <!--
       <div class="row justify-content-center">  
-        <div class="col-md-5">
+        <div class="col-md-9">
           <li id="nombre_publicacion"><span class="glyphicon glyphicon-user"></span>UsuarioM</li>
           <a href="#">
             <img class="img-fluid rounded mb-3 mb-md-0" src="../static/imagenes/500x300.png" alt="">
-          </a>  
-            <div class="miCalificacion">
-              Tu puntuación:
-              <label style="color: yellow">★</label>
-              <label style="color: yellow">★</label>
-              <label style="color: yellow">★</label>
-              <label>★</label>
-              <label>★</label><br>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <h4>Calificaciones</h4>
+          <p style="font-size: 1.3em;"><b>UsuarioA: </b>3</p><br>
+          <p style="font-size: 1.3em;"><b>UsuarioB: </b>4</p><br>
+          <p style="font-size: 1.3em;"><b>UsuarioC: </b>5</p><br>
+          <form accept-charset="UTF-8" role="form" method="post" action="califcImg" id="califcImg">
+            <div class="col-md-10">
+              <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Califica la imagen..." id="valor">
             </div>
-        </div>
-        <div class="col-md-l" style="padding-right: 40px">
-          <form>
-            <p class="promedioCalificacion">
-              <label style="color: yellow">★</label><br>
-              <label style="color: yellow">★</label><br>
-              <label style="color: yellow">★</label><br>
-              <label>★</label><br>
-              <label>★</label><br>
-            </p>
+            <div class="col-md-2" style="padding-left: 2px">
+              <button type="submit" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+            </div>
           </form>
-        </div>
-        <div class="col-md-6">
-          <h4>Comentarios</h4>
-          <p><b>UsuarioA: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
-          <p><b>UsuarioB: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
-          <p><b>UsuarioC: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p><br>
-
-          <div class="col-md-10">
-            <input type="text" class="form-control"  placeholder="Agrega un comentario..." >
-          </div>
-          <div class="col-md-2" style="padding-left: 2px">
-            <button type="button" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
-          </div>
               
         </div>
       </div> 
-      <hr>-->
+      -->
 
     </div>
       <!-- /.container -->
@@ -186,6 +182,14 @@
         } else if(res.length > 2){
           event.preventDefault();
           alert("Error: debe introducir solo el nombre y/o apellido del usuario a buscar");
+        }
+      });
+      //Validamos la calificacion antes del submit
+      $("#califcImg").submit(function(event){
+        var userCalifc = $('#valor').val();
+        if ((userCalifc>5)||(userCalifc<0)){
+          event.preventDefault();
+          alert("Error: el valor de la calificacion debe estar entre 0 y 5");
         }
       });
     </script>
