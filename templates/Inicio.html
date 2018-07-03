@@ -16,8 +16,10 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <style type="text/css">
       #btComentar:hover{
@@ -103,19 +105,25 @@
                 <img class="card-img-top {{x['filtro']}}" style=" max-width: 80%;" src="{{x['imagen']}}" alt="Card image cap">
               </div>
               <div class="card-body" align="left">
-                <h2 class="card-title">{{x["nombre"]}}</h2>
-                <p style="font-size: 1.3em;"><b>Descripcion:</b> {{x["desc"]}}</p>
+                <h2 class="card-title">{{x["userName"]}}</h2>
+                <div class="form-field">
+                  <select id="glsr-ltr" class="star-rating">
+                    <option value="">Select a rating</option>
+                    <option value="5">Fantastic</option>
+                    <option value="4">Great</option>
+                    <option value="3">Good</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                  </select>
+                </div>
+                <p style="font-size: 1.2em;">{{x["desc"]}}</p>
                 <br>
-                <p style="font-size: 1.3em;"><b>Calificaciones:</b></p>
-                <p style="font-size: 1.3em;"><b>UsuarioA</b> califico tu foto con: 3</p><br>
-                <p style="font-size: 1.3em;"><b>UsuarioB</b> califico tu foto con: 4</p><br>
-                <p style="font-size: 1.3em;"><b>UsuarioC</b> califico tu foto con: 5</p><br>
                 <form accept-charset="UTF-8" role="form" method="post" action="califcImg" id="califcImg">
                   <div class="col-md-10">
-                    <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Califica la imagen..." id="valor">
+                    <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Comentario..." id="valor">
                   </div>
                   <div class="col-md-2" style="padding-left: 2px">
-                    <button type="submit" class="btn btn-outline-primary" id="btComentar">Añadir</button>  
+                    <button type="submit" class="btn btn-outline-primary" id="btComentar">Comentar</button>  
                   </div>
                 </form>
               </div>
@@ -193,6 +201,25 @@
         }
       });
     </script>
+      <script src="../static/js/star-rating.js"></script>
+      <script>
+        var destroyed = false;
+        var starratings = new StarRating( '.star-rating', {
+          onClick: function( el ) {
+            console.log( 'Selected: ' + el[el.selectedIndex].text );
+          },
+        });
+        document.querySelector( '.toggle-star-rating' ).addEventListener( 'click', function() {
+          if( !destroyed ) {
+            starratings.destroy();
+            destroyed = true;
+          }
+          else {
+            starratings.rebuild();
+            destroyed = false;
+          }
+        });
+      </script>
 
   </body>
 
