@@ -1,6 +1,7 @@
 var fbAppId = '194084651239617';
 var ID;
 var accessToken;
+//var objectToLike = 'http://www.ign.com/videos/2013/11/01/battlefield-4-next-gen-vs-current-gen';
 
 // Solo para validar que el App ID sea un string
 if (fbAppId == ' ') {
@@ -77,15 +78,26 @@ function login_fb () {
     FB.login(function(response) {
         if (response.authResponse) {
             accessToken = response.authResponse.accessToken;
-            //document.getElementById('status').innerHTML ='Bienvenido!  Adquiriendo informacion.... ';
             FB.api('/me', function(response) {
-              return response.name
-               /*document.getElementById('status').innerHTML = '\nUn placer verte de nuevo por aca, ' + response.name + '.';
-               recargarboton("login");*/
+              $("#userNameF").val(response.id);
+              //alert($("#userNameF").val()+"  "+response.name);
             });
         } else {
-          return -1
-            //document.getElementById('status').innerHTML = 'El usuario cancelo el login o tuvo un error al ingresar los datos.';
+          alert("Error: no se pudo asociar su cuenta de Facebook")
+        }
+    },{scope: 'user_friends,public_profile,email'});
+}
+
+function login_fb_2 () {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            accessToken = response.authResponse.accessToken;
+            FB.api('/me', function(response) {
+              $("#userNameF").val(response.id);
+              //alert($("#userNameF").val()+"  "+response.name);
+            });
+        } else {
+          alert("Error: no se pudo iniciar sesion con Facebook");
         }
     },{scope: 'user_friends,public_profile,email'});
 }
@@ -113,13 +125,13 @@ function load_friends(){
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             FB.api(
-      			  '/me/friends',
-      			  function(response) {
-      			      // Insert your code here
+              '/me/friends',
+              function(response) {
+                  // Insert your code here
                   alert("Tienes "+response.summary.total_count+" amigos");
                   console.log(response);
-      			  }
-      			);
+              }
+            );
         }else{
             alert("No estas Conectado");
         }

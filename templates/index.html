@@ -113,18 +113,30 @@
             <div class="card-body">
               <div class="form-group">
                 <a href="registrarse"><input class="btn btn-primary btn-block" value="Registro"/></a><br> 
-                <a class="btn btn-block btn-social btn-facebook" style="color: white" onclick="login_fb()">
+                
+                <form class="log" action="f_login" method="POST" id="LogInFB">
+                  <input type="text" class="form-control" style="display: none;" value="" name="userNameF" id="userNameF">
+                </form>
+                <button class="btn btn-block btn-social btn-facebook" style="color: white" onclick="fLogin()">
                   <i class="fab fa-facebook"></i> Iniciar Sesión con Facebook
-                </a>
+                </button>
               </div>
               <div class="form-group">
-                <form class="log" action="twitter_login" method="POST">
-                  <button id="login_button" class="btn btn-block btn-social btn-tw fab fa-twitter" type="submit" value="LogIn">
+                <form class="log" action="t_login" method="POST" id="LogInT">
+                  <input type="text" class="form-control" style="display: none;" value="" name="userNameT" id="userNameT">
+                  <button class="btn btn-block btn-social btn-tw fab fa-twitter" type="submit">
                     Iniciar Sesión con Twitter
                   </button>
-                 </form>  
+                </form>  
                 <div><p id="status"></p></div>
-              </div>  
+              </div>
+              {% if error == 4 %}
+                <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Facebook no esta asociada<br>inicie sesion y asociela<br> en editar perfil</p>
+              {% elif error == 5 %}
+                <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Twitter no esta asociada<br>inicie sesion y asociela<br> en editar perfil</p>
+              {% elif error == 6 %}
+                <p style="font-size: 16px;color: red;text-align: center;">Error: no se puedo realizar la operacion</p>
+              {% endif %} 
             </div>
           </div>
 
@@ -154,6 +166,46 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/jquery/jquery.min.js"></script>
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/fb.js"></script>
+
+    <script type="text/javascript">
+      //Validamos el submit de FB
+      function fLogin(){
+        FB.login(function(response) {
+            event.preventDefault();
+            if (response.authResponse) {
+                accessToken = response.authResponse.accessToken;
+                FB.api('/me', function(response) {
+                  $("#userNameF").val(response.id);
+                  //alert($("#userNameF").val()+"  "+response.name);
+                  $("#LogInFB").submit()
+                });
+            } else {
+              alert("Error: no se pudo iniciar sesion con Facebook");
+            }
+        },{scope: 'user_friends,public_profile,email'});
+      };
+
+      //Validamos el submit de FB
+      $("#LogInT").submit(function(event){
+        function asociar_t(){
+          $.ajax({
+            url: "twitter",
+            method: "POST",
+            data: {},
+            success: function(data){
+              $("#userNameT").val(data);
+              //alert(data)
+            },
+            error: function(e){
+              event.preventDefault();
+              alert("Error: no se pudo iniciar sesion");
+              console.log(e);
+            }
+          });
+        }
+      });
+    </script>
 
   </body>
 

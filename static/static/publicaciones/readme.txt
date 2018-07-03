@@ -1,1 +1,0 @@
-Carpeta donde se van a guardar las publicaciones de los usuarios

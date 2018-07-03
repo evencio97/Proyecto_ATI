@@ -67,6 +67,7 @@ def goToNotificaciones():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
+@app.route('/salvarPerfil')
 @app.route('/editarPerfil')
 def goToEditPerfil():
 	if 'username' in session:
@@ -84,14 +85,14 @@ def goToCargarFoto():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
-@app.route('/registro')
-
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     return render_template('index.html', data = newPost("Publico",None))
 
+@app.route('/t_login')
+@app.route('/f_login')
 @app.route('/login')
 def gotoHome():	
 	if 'username' in session:
@@ -229,20 +230,86 @@ def cargarF():
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
-@app.route('/twitter_login',methods=['POST','GET'])
+@app.route('/twitter',methods=['POST'])
 def twitter_login():
 	global api
 	api = tweepy.API(auth)
 	user = api.me()
 	return user.screen_name
 
-@app.route('/editarPerfil')
+@app.route('/salvarPerfil',methods=['POST'])
 def salvarPerfil():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('EditarPerfil.html', user = session['nombre'])
+		userNew = request.form.to_dict()
+
+		userOld = usuarios.find_one({ "userName": session['username'] })
+		if request.form['pwdOld'] != userOld["pwd"]:
+			#Las contraseñas no son iguales
+			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -1)
+		
+		aux = usuarios.find_one({ "userName": userNew["userName"] })
+		if userOld["userName"] != userNew["userName"] and aux != None:
+			#Existe el userName escoguido
+			userNew["userName"] = ""
+			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -2)
+		
+		aux = usuarios.find_one({ "email": userNew["email"] })
+		if userOld["email"] != userNew["email"] and aux != None:
+			#Existe el email
+			userNew["email"] = ""
+			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -3)
+		
+		aux = usuarios.find_one({ "userNameF": userNew["userNameF"] })
+		if aux != None and userOld["userName"] != aux["userName"]:
+			#Ya se asocio la cuenta de FB
+			del(userNew["userNameF"])
+			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -4)
+
+		aux = usuarios.find_one({ "userNameT": userNew["userNameT"] })
+		if aux != None and userOld["userName"] != aux["userName"]:
+			#Ya se asocio la cuenta de Twitter
+			del(userNew["userNameT"])
+			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -5)
+		
+		db.usuarios.delete_one({'userName': userOld["userName"]})
+		session["username"] = userNew["userName"]
+		session["nombre"] = userNew["nombre"]+" "+userNew["apellido"]
+		del(userNew["pwdOld"])
+		db.usuarios.insert_one(userNew)
+		return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = 1)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
+
+#Inicio de Sesion con las Redes
+@app.route('/f_login', methods=['POST'])
+def f_login():
+	userFB = request.form['userNameF']
+
+	#Iniciamos con FB
+	user = usuarios.find_one({ "userNameF": userFB })
+
+	if user is None:
+		return render_template('index.html', error = 4, data = newPost("Publico",None))
+	else:
+		session['username'] = user['userName']
+		session['nombre'] = user["nombre"]+" "+user["apellido"]
+		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
+
+
+@app.route('/t_login', methods=['POST'])
+def t_login():
+	userT  = request.form['userNameT']
+
+	#Iniciamos con Twitter
+	user = usuarios.find_one({ "userNameT": userT })
+
+	if user is None:
+		return render_template('index.html', error = 5, data = newPost("Publico",None))
+	else:
+		session['username'] = user['userName']
+		session['nombre'] = user["nombre"]+" "+user["apellido"]
+		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
 
 #Devuelve las publicaciones mas nuevas segun el tipo o usuario
 def newPost(tipo,userN):

@@ -158,9 +158,10 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <input type="text" class="form-control" style="display: none;" value="{{datos['userNameF']}}" name="userNameF" id="userNameF">
-              <button class="btn btn-block btn-social btn-facebook" style="color: white" onclick="asociar_fb()">
+              <button class="btn btn-block btn-social btn-facebook" style="color: white" onclick="login_fb()">
                 <i class="fab fa-facebook"></i> Asociar cuenta de Facebook
               </button>
+              <p id="status"></p>
             </div>
             <div class="form-group col-md-6">
               <input type="text" class="form-control" style="display: none;" value="{{datos['userNameT']}}" name="userNameT" id="userNameT">
@@ -185,6 +186,23 @@
     <br>
     <button type="submit" class="btn btn-success btn-lg" id="save">Guardar Cambios</button>
     <a href="/"><button type="button" class="btn btn-danger btn-lg">Cancelar</button></a>
+    {% if flag %}
+      <div style="margin: 10px;">
+        {% if flag == 1 %}
+          <p style="font-size: 16px;color: green;text-align: center;">Perfil modificado!</p>
+        {% elif flag == -1 %}
+          <p style="font-size: 16px;color: red;text-align: center;">Las contraseñas no coinciden!</p>
+        {% elif flag == -2 %}
+          <p style="font-size: 16px;color: red;text-align: center;">El nombre de usuario ya existe!</p>
+        {% elif flag == -3 %}
+          <p style="font-size: 16px;color: red;text-align: center;">El email ya existe!</p>
+        {% elif flag == -4 %}
+          <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Facebook ya fue asociada</p>
+        {% elif flag == -5 %}
+          <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Twitter ya fue asociada</p>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </form>
 
@@ -205,25 +223,14 @@
     <script src="../static/js/fb.js"></script>
 
     <script type="text/javascript">
-      function asociar_fb(){
-        nombre = login_fb ();
-
-        if (nombre != -1){
-          $("#userNameF").val(nombre);
-          alert(nombre);
-        } else{
-          alert("Error: no se pudo asociar su cuenta de Facebook")
-        }
-      }
-
       function asociar_t(){
         $.ajax({
-          url: "twitter_login",
+          url: "twitter",
           method: "POST",
           data: {},
           success: function(data){
             $("#userNameT").val(data);
-            alert(data)
+            //alert(data)
           },
           error: function(e){
             alert("Error: no se pudo asociar su cuenta de Twitter");
