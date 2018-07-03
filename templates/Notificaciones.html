@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
       <div class="container">
-        <a class="navbar-brand text-white"  href="inicio.html" id="ATIstagram">ATIstagram</a>
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,22 +35,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive" >
           <ul class="navbar-nav ml-auto" id="Menu_Centro">
             <li class="nav-item">
-              <a class="nav-link" href="inicio.html">Inicio</a>
+              <a class="nav-link" href="/">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="miPerfil.html">Mi Perfil</a>
+              <a class="nav-link" href="miPerfil">Mi Perfil</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="Notificaciones.html">Notificaciones</a>
+              <a class="nav-link" href="notificaciones">Notificaciones</a>
               <span class="sr-only">(current)</span>
             </li>
           </ul>
         </div>
         <div id="navbarResponsive" style="list-style: none;">
-          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">Mi Usuario</a>
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
             <ul class="dropdown-menu" >
-              <li><a href="EditarPerfil.html">Editar Perfil</a></li>
-              <li><a  href="index.html">Cerrar Sesión</a></li>
+              <li><a href="editarPerfil">Editar Perfil</a></li>
+              <li><a  href="logout">Cerrar Sesión</a></li>
             </ul>
           </li>
         </div>
@@ -67,14 +67,14 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
 		</div>
 		<div class="col-xs-7 col-md-2">
 			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO A</p><br><p style="margin-top: -30px">Ha comenzado a seguirte.</p></div>
 		</div>
 
 		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
 		</div>
 		<div class="col-xs-7 col-md-2">
 			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO AB</p><br><p style="margin-top: -30px">Califico tu fotografia con 4 estrellas.</p></div>
@@ -82,14 +82,14 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
 		</div>
 		<div class="col-xs-7 col-md-2">
 			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO ABC</p><br><p style="margin-top: -30px">Publico una fotografia.</p></div>
 		</div>
 
 		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
-			<img class="foto-buscador" src="Imagenes/usuario80x80.png" alt="">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
 		</div>
 		<div class="col-xs-7 col-md-2">
 			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO KLM</p><br><p style="margin-top: -30px">Comento tu fotografia.</p></div>
@@ -146,8 +146,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 

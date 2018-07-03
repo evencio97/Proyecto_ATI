@@ -55,7 +55,7 @@ def iniciarSesion():
 def goToPerfil():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('miPerfil.html')
+		return render_template('miPerfil.html', user = session['nombre'])
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -63,7 +63,7 @@ def goToPerfil():
 def goToNotificaciones():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('Notificaciones.html')
+		return render_template('Notificaciones.html', user = session['nombre'])
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
