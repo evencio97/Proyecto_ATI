@@ -107,10 +107,9 @@
                 <p style="font-size: 1.3em;"><b>Descripcion:</b> {{x["desc"]}}</p>
                 <br>
                 <p style="font-size: 1.3em;"><b>Calificaciones:</b></p>
-                <p style="font-size: 1.3em;"><b>UsuarioA</b> califico tu foto con: 3</p><br>
-                <p style="font-size: 1.3em;"><b>UsuarioB</b> califico tu foto con: 4</p><br>
-                <p style="font-size: 1.3em;"><b>UsuarioC</b> califico tu foto con: 5</p><br>
-                
+                {% for y in x["califc"] %}
+                  <p style="font-size: 1.3em;"><b>{{y["nombre"]}}</b> califico tu foto con: {{y["valor"]}}</p><br>
+                {% endfor %}
                 <div class="col-md-10">
                   <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Califica la imagen..." id="{{x['_id']}}">
                 </div>
@@ -177,8 +176,7 @@
               if (data=="salir"){
                 alert("Error su sesion ah expirado!");
               } else if(data=="exito"){
-                alert("Operación excitosa!");
-                document.getElementById(id).value("")
+                location.reload();
               } else{
                 alert("Error no se pudo realizar la operación!");
               }

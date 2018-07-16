@@ -358,14 +358,17 @@ def calificar():
 		if aux is None:
 			return "error"
 		#Creamos la calificacion
-		dictAux = dict(valor= data["valor"], userName= session['username'], fecha= datetime.datetime.now())
-		aux["califc"].append(dictAux)
-		publicaciones.update_one({"_id": aux["_id"]}, {"$set": {"califc": aux["califc"]}})
-		#db.calificaciones.insert_one(dictAux)
+		dictAux = dict(valor= data["valor"], nombre= session['nombre'], userName= session['username'], fecha= datetime.datetime.now())
+		array = []
+		array.append(dictAux)
+		#Validamos si el usuario ya califico la foto
+		for x in range(len(aux["califc"])):
+			#Si no es del mismo usuario la encolamos en el arreglo
+			if session['username'] != aux["califc"][x]["userName"]:
+				array.append(aux["califc"][x])
+
+		publicaciones.update_one({"_id": aux["_id"]}, {"$set": {"califc": array}})
 		return "exito"
-		"""else:
-			#Ya existe la calificacion la actualizamos
-			db.calificaciones.update_one({ "id_P": data["id"] }, {"$set": {"valor": data["valor"],"fecha": datetime.datetime.now()}})"""
 	#El usuario no ha iniciado sesion
 	return "salir"
 
@@ -382,6 +385,7 @@ def newPost(tipo,userN):
 			aux.append(x["userName_2"])
 		#Buscamos segun el usuario
 		data = db.publicaciones.find({"$or":[{"userName": userN},{"userName": { "$in": aux}}]}).sort("fecha", -1)
+
 		return data
 
 #Inicio del Servidor
