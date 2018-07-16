@@ -105,6 +105,11 @@ p{
   padding-bottom:20px;
 }
 
+#calificarme select{
+  padding-bottom: 0px;
+}
+
+
 .fb-profile img.fb-image-lg{
     z-index: 0;
     width: 100%;

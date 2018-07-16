@@ -58,7 +58,8 @@ def gotoRecupContra():
 def goToPerfil():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('miPerfil.html', user = session['nombre'])
+		userInfo = usuarios.find_one({"userName": session['username']})
+		return render_template('miPerfil.html', user = session['nombre'], data = newPost("perfil",session["username"]), info = userInfo)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -378,13 +379,16 @@ def newPost(tipo,userN):
 		#buscamos segun el tipo
 		data = db.publicaciones.find({"seguridad": "Publico"}).sort("fecha", -1).limit(20)
 		return data
+	elif tipo=="perfil":
+		data = db.publicaciones.find({"userName": session["username"]}).sort("fecha", -1).limit(20)
+		return data	
 	else:
 		seguidos = list(db.sigue.find({"userName_1": userN},{ "_id": 0,"userName_2": 1 }))
 		aux = []
 		for x in seguidos:
 			aux.append(x["userName_2"])
 		#Buscamos segun el usuario
-		data = db.publicaciones.find({"$or":[{"userName": userN},{"userName": { "$in": aux}}]}).sort("fecha", -1)
+		data = db.publicaciones.find({"$or":[{"userName": userN},{"userName": { "$in": aux}}]}).sort("fecha", -1).limit(20)
 
 		return data
 
