@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram - Notificaciones</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="miPerfil">Mi Perfil</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="notificaciones">Notificaciones</a>
+              <span class="sr-only">(current)</span>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive" style="list-style: none;">
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
+            <ul class="dropdown-menu" >
+              <li><a href="editarPerfil">Editar Perfil</a></li>
+              <li><a  href="logout">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </div>
+      </div>   
+    </nav>
+
+   
+    <!-- Page Content -->
+    <div class="container-fluid">
+     
+<H1 style="text-align: center">NOTIFICACIONES</H1>
+<hr>
+        
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-7 col-md-2">
+			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO A</p><br><p style="margin-top: -30px">Ha comenzado a seguirte.</p></div>
+		</div>
+
+		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-7 col-md-2">
+			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO AB</p><br><p style="margin-top: -30px">Califico tu fotografia con 4 estrellas.</p></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-7 col-md-2">
+			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO ABC</p><br><p style="margin-top: -30px">Publico una fotografia.</p></div>
+		</div>
+
+		<div class="col-xs-offset-3 col-xs-2 col-md-offset-1 col-md-2" style="padding-top: 2%">
+			<img class="foto-buscador" src="../static/Imagenes/usuario80x80.png" alt="">
+		</div>
+		<div class="col-xs-7 col-md-2">
+			<div class="centrado-vertical"><p class="nombre-usuario">USUARIO KLM</p><br><p style="margin-top: -30px">Comento tu fotografia.</p></div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+      <hr>
+
+      <!-- Pagination -->
+
+      <div class="row justify-content-center">
+        <div class="col-md-12" >
+          <div class="col-md-3 col-md-offset-5">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>      
+
+    </div>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram - Editar Perfil</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Inicio
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="miPerfil">Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="notificaciones">Notificaciones</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive" style="list-style: none;">
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/Imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
+            <ul class="dropdown-menu" >
+              <li><a href="editarPerfil">Editar Perfil</a></li>
+              <li><a  href="logout">Cerrar Sesión</a></li>
+          </ul>
+          </li>
+        </div>
+      </div>   
+    </nav>
+
+  
+    <!-- Page Content -->
+<div class="container-fluid">
+
+<H1 style="text-align: center">EDITAR PERFIL</H1>
+<hr>
+
+
+<!-- Editar Fotos de Perfil -->
+<div class="col-xs-12 col-md-4">
+<H3 style="text-align: center">Fotos de Perfil</H3>
+<hr>
+  <div class="col-xs-12">
+    <img class="img-fluid" src="../static/imagenes/900x200.png" alt="">
+    <br><br>
+    <div align="center">
+      <button type="button" class="btn btn-primary btn-md active" id="imgGrande">Seleccionar Foto</button>
+    </div>
+    <br><br>
+  </div>
+  <div class="col-xs-12">
+    <div align="center"><img class="img-fluid" src="../static/imagenes/200x200.png" alt=""></div>
+    <br>
+    <div align="center">
+      <button type="button" class="btn btn-primary btn-md active" id="imgPequeña">Seleccionar Foto</button>
+    </div>
+    <br>
+  </div>
+</div>
+<!-- FIN Editar Fotos de Perfil -->
+<form accept-charset="UTF-8" role="form" method="post" action="salvarPerfil">
+<!-- Formulario Datos Personales -->
+  <div class="col-md-offset-1  col-md-6">
+  <H3 style="text-align: center">Datos Personales</H3>
+  <hr>
+    <div class="card">
+      <article class="card-body">
+        
+          <div class="form-row">
+            <div class="col form-group">
+            <label>Nombre</label>   
+            <input type="text" class="form-control" name="nombre" value="{{datos['nombre']}}" required=""  disabled>
+            </div> <!-- form-group end.// -->
+            <div class="col form-group">
+            <label>Apellido</label>
+            <input type="text" class="form-control" name="apellido" value="{{datos['apellido']}}" required=""  disabled>
+            </div> <!-- form-group end.// -->
+          </div> <!-- form-row end.// -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Nombre de Usuario</label>
+              <input type="text" class="form-control" name="userName" value="{{datos['userName']}}" required=""  disabled>
+            </div> <!-- form-group end.// -->
+            <div class="form-group col-md-6">
+              <label>Seguridad</label>
+              <select class="form-control" name="seguridad" style="padding-bottom: 25px" value="{{datos['seguridad']}}" required="">
+                <option>Publico</option>
+                <option>Privado</option>
+              </select>
+            </div> <!-- form-group end.// -->
+          </div>
+          <div class="form-group">
+            <label>Correo Electronico</label>
+            <input type="email" name="email" class="form-control" value="{{datos['email']}}" required="">
+          </div> <!-- form-group end.// -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Telefono</label>
+              <input type="text" class="form-control" value="{{datos['tlf']}}" name="tlf">
+            </div> <!-- form-group end.// -->
+            <div class="form-group col-md-6">
+              <label>Sexo</label>
+              <select class="form-control" name="sexo" style="padding-bottom: 25px" value="{{datos['sexo']}}" required="">
+                <option>Femenino</option>
+                <option>Masculino</option>
+              </select>
+            </div> <!-- form-group end.// -->
+          </div> <!-- form-group end.// -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Ciudad</label>
+              <input type="text" class="form-control" value="{{datos['ciudad']}}" name="ciudad">
+            </div> <!-- form-group end.// -->
+            <div class="form-group col-md-6">
+              <label>Pais</label>
+              <select class="form-control" name="pais" style="padding-bottom: 25px" value="{{datos['pais']}}" required="">
+                <option>Argentina</option>
+                <option>Estados Unidos</option>
+                <option>España</option>
+                <option>Venezuela</option>
+                <option>Vietnam</option>
+              </select>
+            </div> <!-- form-group end.// -->
+          </div> <!-- form-row.// -->
+          <div class="form-group">
+            <label>Fecha de Nacimiento:</label>
+            <input type="date" name="nacimiento" step="1" min="1930-01-01" max="2018-05-31" value="{{datos['nacimiento']}}" required="">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" style="display: none;" value="{{datos['userNameF']}}" name="userNameF" id="userNameF">
+              <button class="btn btn-block btn-social btn-facebook" style="color: white" onclick="login_fb()">
+                <i class="fab fa-facebook"></i> Asociar cuenta de Facebook
+              </button>
+              <p id="status"></p>
+            </div>
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" style="display: none;" value="{{datos['userNameT']}}" name="userNameT" id="userNameT">
+              <button class="btn btn-block btn-social fab fa-twitter btn-tw" onclick="asociar_t()">
+                Asociar cuenta de Twitter
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Contraseña Actual</label>
+            <input class="form-control" type="password" name="pwdOld" value="" required="">
+            <label>Contraseña Nueva</label>
+            <input class="form-control" type="password" name="pwd" value="" required="">
+          </div> <!-- form-group end.// -->  
+        
+      </article> <!-- card-body end .// -->
+    </div> <!-- card.// -->
+  </div>
+  <!-- Fin Formulario Datos Personales -->
+
+  <div class="col-xs-12" align="center">
+    <br>
+    <button type="submit" class="btn btn-success btn-lg" id="save">Guardar Cambios</button>
+    <a href="/"><button type="button" class="btn btn-danger btn-lg">Cancelar</button></a>
+    {% if flag %}
+      <div style="margin: 10px;">
+        {% if flag == 1 %}
+          <p style="font-size: 16px;color: green;text-align: center;">Perfil modificado!</p>
+        {% elif flag == -1 %}
+          <p style="font-size: 16px;color: red;text-align: center;">Las contraseñas no coinciden!</p>
+        {% elif flag == -2 %}
+          <p style="font-size: 16px;color: red;text-align: center;">El nombre de usuario ya existe!</p>
+        {% elif flag == -3 %}
+          <p style="font-size: 16px;color: red;text-align: center;">El email ya existe!</p>
+        {% elif flag == -4 %}
+          <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Facebook ya fue asociada</p>
+        {% elif flag == -5 %}
+          <p style="font-size: 16px;color: red;text-align: center;">La cuenta de Twitter ya fue asociada</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</form>
+
+</div>
+<br><br><br>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5"  style="border-radius: 0px; background-color: #3267AD">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/fb.js"></script>
+
+    <script type="text/javascript">
+      function asociar_t(){
+        $.ajax({
+          url: "twitter",
+          method: "POST",
+          data: {},
+          success: function(data){
+            $("#userNameT").val(data);
+            //alert(data)
+          },
+          error: function(e){
+            alert("Error: no se pudo asociar su cuenta de Twitter");
+            console.log(e);
+          }
+        });
+      }
+    </script>
+
+  </body>
+
+</html>

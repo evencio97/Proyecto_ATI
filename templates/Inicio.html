@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style type="text/css">
+      #btComentar:hover{
+        color: white;
+      }
+    </style>
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive" >
+          <ul class="navbar-nav ml-auto" id="Menu_Centro">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Inicio
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="miPerfil">Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="notificaciones">Notificaciones</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbarResponsive" style="list-style: none;">
+          <li class="dropdown"  id="Menu_Derecha"><img id="fotopequeñaUsuario" class="img-circle" src="../static/imagenes/usuario80x80.png" alt=""><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; padding-left: 10px">{{user}}</a>
+            <ul class="dropdown-menu" >
+              <li><a href="editarPerfil">Editar Perfil</a></li>
+              <li><a  href="logout">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </div>
+      </div>   
+    </nav>
+
+   
+    <!-- Page Content -->
+    <div class="container">
+     
+      <!-- Buscador -->
+      <div class="row justify-content-center">
+        <div class="col-md-12" >
+          <div class="col-md-6 col-md-offset-3">
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                  <form accept-charset="UTF-8" role="form" method="post" action="buscarUsuario" id="buscarU">
+                    <input type="text" class="form-control"  placeholder="Buscar Usuario" id="userAB" name="userB">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <a target="_self">
+                              <span class="glyphicon glyphicon-search"></span>
+                            </a>
+                        </button>
+                    </span>
+                  </form>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-2" id="botonSubir">
+          	<a href="cargarFoto"><button type="button" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="glyphicon glyphicon-picture"></i></span>Publicar</button>
+            </a>
+          </div>
+        </div>   
+      </div>
+      <div align="center">
+        <!-- Publicaciones -->
+        {% if data != None %}
+          {% for x in data %}
+
+            <div class="card mb-4"  style="max-width: 70%;">
+              <div align="center">
+                <img class="card-img-top {{x['filtro']}}" style=" max-width: 80%;" src="{{x['imagen']}}" alt="Card image cap">
+              </div>
+              <div class="card-body" align="left">
+                <h2 class="card-title">{{x["nombre"]}}</h2>
+                <p style="font-size: 1.3em;"><b>Descripcion:</b> {{x["desc"]}}</p>
+                <br>
+                <p style="font-size: 1.3em;"><b>Calificaciones:</b></p>
+                <p style="font-size: 1.3em;"><b>UsuarioA</b> califico tu foto con: 3</p><br>
+                <p style="font-size: 1.3em;"><b>UsuarioB</b> califico tu foto con: 4</p><br>
+                <p style="font-size: 1.3em;"><b>UsuarioC</b> califico tu foto con: 5</p><br>
+                
+                <div class="col-md-10">
+                  <input type="number" min="0" max="5" class="form-control" name="califc" placeholder="Califica la imagen..." id="{{x['_id']}}">
+                </div>
+                <div class="col-md-2" style="padding-left: 2px">
+                  <button type="button" onclick="califc('{{x._id}}');" class="btn btn-outline-primary">Añadir</button>  
+                </div>
+
+              </div>
+              <div class="card-footer text-muted">
+                {{x["fecha"].strftime("%X")}} {{ x["fecha"].strftime("%x") }}
+              </div>
+            </div>
+            <div class="col-md-12"><hr></div>
+
+          {% endfor %}
+        {% else %}
+          <p style="font-size: 16px;text-align: center;">No se obtuvieron resultados!</p>
+        {% endif %}
+      </div>
+
+    </div>
+      <!-- /.container -->
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+      //Validamos el input antes de hacer el submit
+      $("#buscarU").submit(function(event){
+        var userAB = $('#userAB').val();
+        var res = userAB.split(" ");
+        if ((!userAB)||(userAB == null)||(userAB.length <= 0 )||(res.length <= 0)){
+          event.preventDefault();
+          alert("Error: debe introducir el usuario a buscar");
+        } else if(res.length > 2){
+          event.preventDefault();
+          alert("Error: debe introducir solo el nombre y/o apellido del usuario a buscar");
+        }
+      });
+      //Calificamos la foto
+      function califc(id){
+        var userCalifc = document.getElementById(id).value;
+        //Validamos el valor
+        if ((userCalifc>5)||(userCalifc<0)||(userCalifc.length == 0)){
+          alert("Error: el valor de la calificacion debe estar entre 0 y 5");
+        } else{
+          //Enviamos la calificacion al servidor
+          $.ajax({
+            url: "calificar",
+            method: "POST",
+            data: {
+              valor: userCalifc,
+              id: id
+            },
+            success: function(data){
+              if (data=="salir"){
+                alert("Error su sesion ah expirado!");
+              } else if(data=="exito"){
+                alert("Operación excitosa!");
+                document.getElementById(id).value("")
+              } else{
+                alert("Error no se pudo realizar la operación!");
+              }
+            },
+            error: function(e){
+              alert("Error no se pudo realizar la operación");
+              console.log(e);
+            }
+          });
+        }
+      }
+    </script>
+
+  </body>
+
+</html>

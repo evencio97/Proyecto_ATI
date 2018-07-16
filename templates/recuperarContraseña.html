@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Recuperar Contraseña - ATIstagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style type="text/css">
+      .Texto{
+        text-align: left !important;
+      }
+    </style>
+
+  </head>
+
+  <body id="cuerpo">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="Menu">
+      <div class="container">
+        <a class="navbar-brand text-white"  href="/" id="ATIstagram">ATIstagram</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto"  id="Menu_Derecha">
+            <li class="nav-item active">
+              <select>
+                <option>Español</option>
+                <option>Ingles</option>
+                <option>Frances</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6" style="text-align:center;">
+        
+          <h4 style="border-bottom: 1px solid #c5c5c5; padding-top: 49px;"><i class="glyphicon glyphicon-user"></i></h4>
+          <div style=" padding-top: 50px" id="form-olvidado">
+            <h4 class="">¿Olvidaste tu Contraseña?</h4>
+            <form accept-charset="UTF-8" role="form" id="changePWD" method="post" style=" padding-bottom: 95px" action="recuperarC">
+              <fieldset>
+                {% if userName %}
+                  <span class="help-block">Ingresa la nueva contraseña
+                  </span> 
+                  <input type="text" style="display: none;" name="userN" value="{{userName}}">
+                  <label class="Texto">Contraseña</label>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input class="form-control" name="pwd" id="pwd" type="password" value="" required="">
+                  </div>
+                  <label class="Texto">Repetir Contraseña</label>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input class="form-control" name="pwd2" id="pwd2" type="password" value="" required="">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Continuar</button>
+                  <p style="font-size: 16px;color: red;text-align: center;" id="msj"></p>
+                {% else %}
+                  <span class="help-block">Ingresa el correo y nombre de usuario con el que te registraste<br>
+                  </span>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">@ </span>
+                    <input type="email" class="form-control" placeholder="Email" name="email" required="">
+                  </div>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" class="form-control" name="userName" placeholder="Nombre de usuario" required="">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Continuar</button>
+                {% endif %}
+
+                {% if  flag==1 %}
+                  <p style="font-size: 16px;color: green;text-align: center;">Contraseña cambiada con exito!</p>
+                {% elif flag==-1 %}
+                  <p style="font-size: 16px;color: red;text-align: center;">El nombre de usuario y el email no están asociado a niguna cuenta!</p>
+                {% elif flag==-2 %}
+                  <p style="font-size: 16px;color: red;text-align: center;">El email no esta asociado a niguna cuenta!</p>
+                {% elif flag==-3 %}
+                  <p style="font-size: 16px;color: red;text-align: center;">El nombre de usuario no esta asociado a niguna cuenta!</p>
+                {% elif flad==-4 %}
+                  <p style="font-size: 16px;color: red;text-align: center;">El nombre de usuario y el email no pertenecen a la misma cuenta!</p>
+                {% endif %}
+
+                <p class="help-block" style="padding-left: 234px"><a class="text-muted" href="/" id="acceso"><small>Iniciar Sesión</small></a></p>
+                <p class="help-block" style="padding-left: 180px"><a class="text-muted" href="registrarse" id="acceso"><small>Si aun no tienes cuenta, registrate</small></a></p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; ATIstagram 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <script type="text/javascript">
+      //Validamos que las contraseñas sean iguales en el submit
+      $("#changePWD").submit(function(event){
+        if ($("#pwd").length){
+          if ($("#pwd2").val() != $("#pwd").val()){
+            $("#pwd2").val("");
+            $("#msj").text("Las contraseñas no coinciden!");
+            event.preventDefault();
+          }
+        }
+      });
+    </script>
+  
+  </body>
+
+</html>
