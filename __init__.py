@@ -225,7 +225,8 @@ def cargarF():
 		if file and allowed_file(file.filename):
 			#Definimos la ruta y nombre del archivo
 			nombreImg = secure_filename(file.filename)
-			aux = app.root_path+"\static\publicaciones"
+			aux = os.path.join(app.root_path,"static")
+			aux = os.path.join(aux,"publicaciones")
 			ruta = os.path.join(aux, session['username'])
 			#Si no exite la ruta la creamos
 			if not os.path.exists(ruta):
@@ -324,7 +325,8 @@ def guardar_Imagen(file,tipo):
 			nombreImg = "perfil.jpg"
 		else:
 			nombreImg = "fondo.jpg"	
-		aux = app.root_path+"\static\perfiles"
+		aux = os.path.join(app.root_path,"static")
+		aux = os.path.join(aux,"perfiles")
 		ruta = os.path.join(aux, session['username'])
 		#Si no exite la ruta la creamos
 		if not os.path.exists(ruta):
