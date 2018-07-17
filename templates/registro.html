@@ -51,13 +51,32 @@
     </nav>
 
     <!-- Page Content -->
+    <form accept-charset="UTF-8" id="query" role="form" method="post" action="registro" enctype="multipart/form-data">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12">
-          <div class="col-md-6"> 
-              <img src="../static/imagenes/450x530.png">
+          <div class="col-xs-12 col-md-6">
+          <H3 style="text-align: center">Fotos de Perfil</H3>
+          <hr>
+            <div class="col-xs-12">
+              <img id="imgF" style="width:100%;max-height:180px;" class="img-fluid" src="../static/imagenes/900x200.png" alt="">
+              <br><br>
+              <div align="center">
+                <input type="file" style="width: 0px;height: 0px;overflow: hidden;" id="imagenfondo" name="imagenF"/>
+                <button type="button" class="btn btn-primary btn-lg active" onclick="cargarImgF()">Seleccionar Foto</button>
+              </div>
+              <br><br>
+            </div>
+            <div class="col-xs-12">
+              <div align="center"><img style="max-width:250px;max-height:250px;" id="imgP" class="img-fluid" src="../static/imagenes/200x200.png" alt=""></div>
+              <br>
+              <div align="center">
+                <input type="file" style="width: 0px;height: 0px;overflow: hidden;" id="imagenperfil" name="imagenP"/>
+                <button type="button" class="btn btn-primary btn-lg active" onclick="cargarImgP()">Seleccionar Foto</button>
+              </div>
+              <br>
+            </div>
           </div>
-            
           <div class="col-md-6">
             <div class="card">
               <header class="card-header">
@@ -65,7 +84,6 @@
                 <h4 class="card-title mt-2">Registro</h4>
               </header>
               <article class="card-body">
-                <form accept-charset="UTF-8" role="form" method="post" action="registro">
                   <div class="form-row">
                     <div class="col form-group">
                       <label>Nombre</label>   
@@ -150,7 +168,6 @@
                   <div class="border-top card-body text-center">     
                     <small class="text-muted">Al registrarte estas aceptando los Terminos y Condiciones de Uso <br> Gracias por Preferirnos</small> 
                   </div>   
-                </form>
               </article> <!-- card-body end .// -->
             </div> <!-- card.// -->
           </div>
@@ -162,6 +179,7 @@
     </div> <!-- row.//-->
   </div> 
   <!-- /.container -->
+  </form>
   <br>
 
     <!-- Footer -->
@@ -175,7 +193,36 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../static/vendor/jquery/jquery.min.js"></script>
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+    <script type="text/javascript">
+      //Activamos el input file
+      function cargarImgF(){
+        $('#imagenfondo').trigger('click');
+      }
+      function cargarImgP(){
+        $('#imagenperfil').trigger('click');
+      }
+      
+      //Obtenemos la imagen y la mostramos
+      $('#imagenfondo').change(function(e) {
+        var TmpPath = URL.createObjectURL(e.target.files[0]);
+        //alert(TmpPath);
+        $('#imgF').attr('src', TmpPath);
+      });
+      //Obtenemos la imagen y la mostramos
+      $('#imagenperfil').change(function(e) {
+        var TmpPath = URL.createObjectURL(e.target.files[0]);
+        //alert(TmpPath);
+        $('#imgP').attr('src', TmpPath);
+      });
+
+      //Validamos el submit
+      $("#query").submit(function(event){
+        if ((!$('#imagenperfil').val())||(!$('#imagenfondo').val())){
+          event.preventDefault();
+          alert("Error: debe escoger una foto de perfil y de fondo");
+        }
+      });
+    </script>
   </body>
 
 </html>
