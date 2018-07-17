@@ -255,12 +255,6 @@ def salvarPerfil():
 			#Las contraseñas no son iguales
 			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -1)
 		
-		aux = usuarios.find_one({ "userName": userNew["userName"] })
-		if userOld["userName"] != userNew["userName"] and aux != None:
-			#Existe el userName escoguido
-			userNew["userName"] = ""
-			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -2)
-		
 		aux = usuarios.find_one({ "email": userNew["email"] })
 		if userOld["email"] != userNew["email"] and aux != None:
 			#Existe el email
@@ -278,15 +272,57 @@ def salvarPerfil():
 			#Ya se asocio la cuenta de Twitter
 			del(userNew["userNameT"])
 			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -5)
-		
-		db.usuarios.delete_one({'userName': userOld["userName"]})
-		session["username"] = userNew["userName"]
-		session["nombre"] = userNew["nombre"]+" "+userNew["apellido"]
+		if 'imagenP' in request.files:
+			#Validamos que le archivo se haya recibido bien
+			file = request.files['imagenP']
+			if guardar_Imagen(file,"p") == 1:
+				userNew["fotoP"]="perfil.jpg"
+				
+		if 'imagenF' in request.files:
+			#Validamos que le archivo se haya recibido bien
+			file = request.files['imagenF']
+			if guardar_Imagen(file,"F") == 1:
+				userNew["fotoF"]="fondo.jpg"
+
+		if 'imagenF' in userNew:
+			del(userNew["imagenF"])
+		if 'imagenP' in userNew:
+			del(userNew["imagenP"])
+
+		if userNew["userNameF"] == "":
+			del(userNew["userNameF"])
+		if userNew["userNameT"] == "":
+			del(userNew["userNameT"])
+
 		del(userNew["pwdOld"])
-		db.usuarios.insert_one(userNew)
+		db.usuarios.update_one({"userName": session["username"]}, {"$set": userNew})
+		
+		userNew = usuarios.find_one({ "userName": session["username"] })
 		return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = 1)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
+
+def guardar_Imagen(file,tipo):
+
+	if file.filename == '':
+		return 0
+	if file and allowed_file(file.filename):
+		#Definimos la ruta y nombre del archivo
+		if tipo == "p":
+			nombreImg = "perfil.jpg"
+		else:
+			nombreImg = "fondo.jpg"	
+		aux = app.root_path+"\static\perfiles"
+		ruta = os.path.join(aux, session['username'])
+		#Si no exite la ruta la creamos
+		if not os.path.exists(ruta):
+			#Creamos el directorio
+			os.makedirs(ruta)
+		#Guardamos el archivo
+		file.save(os.path.join(ruta, nombreImg))
+		return 1
+	else:
+		return -1
 
 #Inicio de Sesion con las Redes
 @app.route('/f_login', methods=['POST'])
