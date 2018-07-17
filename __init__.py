@@ -37,7 +37,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def index():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('inicio.html', user = session['nombre'], data = newPost(None,session["username"]))
+		return render_template('inicio.html', user = session, data = newPost(None,session["username"]))
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -59,7 +59,7 @@ def goToPerfil():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
 		userInfo = usuarios.find_one({"userName": session['username']})
-		return render_template('miPerfil.html', user = session['nombre'], data = newPost("perfil",session["username"]), info = userInfo)
+		return render_template('miPerfil.html', user = session, data = newPost("perfil",session["username"]), info = userInfo)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -67,7 +67,7 @@ def goToPerfil():
 def goToNotificaciones():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('Notificaciones.html', user = session['nombre'])
+		return render_template('Notificaciones.html', user = session)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -77,7 +77,7 @@ def goToEditPerfil():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
 		data = usuarios.find_one({ "userName": session["username"] })
-		return render_template('EditarPerfil.html', user = session['nombre'], datos = data)
+		return render_template('EditarPerfil.html', user = session, datos = data)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -85,7 +85,7 @@ def goToEditPerfil():
 def goToCargarFoto():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('cargarFoto.html', user = session['nombre'])
+		return render_template('cargarFoto.html', user = session)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -101,7 +101,7 @@ def logout():
 def gotoHome():	
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('inicio.html', user = session['nombre'], data = newPost(None,session["username"]))
+		return render_template('inicio.html', user = session, data = newPost(None,session["username"]))
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -110,7 +110,7 @@ def gotoHome():
 def goToBuscarU():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
-		return render_template('BuscarUsuario.html', user = session['nombre'])
+		return render_template('BuscarUsuario.html', user = session)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -129,7 +129,7 @@ def login():
 	elif user["pwd"] == password:
 		session['username'] = user['userName']
 		session['nombre'] = user["nombre"]+" "+user["apellido"]
-		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
+		return render_template('inicio.html', user = session, data = newPost(None,user["userName"]))
 	return render_template('index.html', error = 1, data = newPost("Publico",None))
 
 #Registro de Usuario
@@ -147,10 +147,22 @@ def registro():
 		#No hay otro usuario con ese email o nombre de usuario, registramos al usuario
 		data = request.form.to_dict()
 		del(data["pwd2"])
-		db.usuarios.insert_one(data)
 		session['username'] = data['userName']
 		session['nombre'] = data["nombre"]+" "+data["apellido"]
-		return render_template('Inicio.html', user = session['nombre'], data = newPost(None,data["userName"]))
+		if 'imagenP' in request.files:
+			#Validamos que le archivo se haya recibido bien
+			file = request.files['imagenP']
+			if guardar_Imagen(file,"p") == 1:
+				data["fotoP"]="perfil.jpg"
+				
+		if 'imagenF' in request.files:
+			#Validamos que le archivo se haya recibido bien
+			file = request.files['imagenF']
+			if guardar_Imagen(file,"F") == 1:
+				data["fotoF"]="fondo.jpg"
+		
+		db.usuarios.insert_one(data)
+		return render_template('Inicio.html', user = session, data = newPost(None,data["userName"]))
 	elif user != None and user2 != None:
 		#Existe el email y el userName
 		return render_template('registro.html', error = 1)
@@ -175,7 +187,7 @@ def buscarU():
 			resuls = db.usuarios.find({"nombre": data[0],"apellido": data[1]},{ "_id": 0,"userName": 1,"nombre": 1, "apellido": 1 })
 		else:
 			x = 0
-		return render_template('BuscarUsuario.html', user = session['nombre'], flag = x, datos = resuls, tam = resuls.count())
+		return render_template('BuscarUsuario.html', user = session, flag = x, datos = resuls, tam = resuls.count())
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -203,13 +215,13 @@ def cargarF():
 	if 'username' in session:
 		#El usuario tiene sesion abierta
 		if 'imagen' not in request.files:
-			return render_template('cargarFoto.html', user = session['nombre'], flag = 0)
+			return render_template('cargarFoto.html', user = session, flag = 0)
 		
 		#Validamos que le archivo se haya recibido bien
 		file = request.files['imagen']
 
 		if file.filename == '':
-			return render_template('cargarFoto.html', user = session['nombre'], flag = -1)
+			return render_template('cargarFoto.html', user = session, flag = -1)
 		if file and allowed_file(file.filename):
 			#Definimos la ruta y nombre del archivo
 			nombreImg = secure_filename(file.filename)
@@ -230,9 +242,9 @@ def cargarF():
 			data["califc"] = []
 			data["fecha"] = datetime.datetime.now()
 			db.publicaciones.insert_one(data)
-			return render_template('cargarFoto.html', user = session['nombre'], flag = 1)
+			return render_template('cargarFoto.html', user = session, flag = 1)
 		else:
-			return render_template('cargarFoto.html', user = session['nombre'], flag = -2)
+			return render_template('cargarFoto.html', user = session, flag = -2)
 
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
@@ -253,25 +265,25 @@ def salvarPerfil():
 		userOld = usuarios.find_one({ "userName": session['username'] })
 		if request.form['pwdOld'] != userOld["pwd"]:
 			#Las contraseñas no son iguales
-			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -1)
+			return render_template('EditarPerfil.html', user = session, datos = userNew, flag = -1)
 		
 		aux = usuarios.find_one({ "email": userNew["email"] })
 		if userOld["email"] != userNew["email"] and aux != None:
 			#Existe el email
 			userNew["email"] = ""
-			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -3)
+			return render_template('EditarPerfil.html', user = session, datos = userNew, flag = -3)
 		
 		aux = usuarios.find_one({ "userNameF": userNew["userNameF"] })
 		if aux != None and userOld["userName"] != aux["userName"]:
 			#Ya se asocio la cuenta de FB
 			del(userNew["userNameF"])
-			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -4)
+			return render_template('EditarPerfil.html', user = session, datos = userNew, flag = -4)
 
 		aux = usuarios.find_one({ "userNameT": userNew["userNameT"] })
 		if aux != None and userOld["userName"] != aux["userName"]:
 			#Ya se asocio la cuenta de Twitter
 			del(userNew["userNameT"])
-			return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = -5)
+			return render_template('EditarPerfil.html', user = session, datos = userNew, flag = -5)
 		if 'imagenP' in request.files:
 			#Validamos que le archivo se haya recibido bien
 			file = request.files['imagenP']
@@ -298,7 +310,7 @@ def salvarPerfil():
 		db.usuarios.update_one({"userName": session["username"]}, {"$set": userNew})
 		
 		userNew = usuarios.find_one({ "userName": session["username"] })
-		return render_template('EditarPerfil.html', user = session['nombre'], datos = userNew, flag = 1)
+		return render_template('EditarPerfil.html', user = session, datos = userNew, flag = 1)
 	#El usuario no ha iniciado sesion
 	return render_template('index.html', data = newPost("Publico",None))
 
@@ -337,7 +349,7 @@ def f_login():
 	else:
 		session['username'] = user['userName']
 		session['nombre'] = user["nombre"]+" "+user["apellido"]
-		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
+		return render_template('inicio.html', user = session, data = newPost(None,user["userName"]))
 
 
 @app.route('/t_login', methods=['POST'])
@@ -352,7 +364,7 @@ def t_login():
 	else:
 		session['username'] = user['userName']
 		session['nombre'] = user["nombre"]+" "+user["apellido"]
-		return render_template('inicio.html', user = session['nombre'], data = newPost(None,user["userName"]))
+		return render_template('inicio.html', user = session, data = newPost(None,user["userName"]))
 
 #Recuperar contraseña
 @app.route('/recuperarC', methods=['POST'])
